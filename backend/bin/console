@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+namespace Mezzio\Tooling;
+
+use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Laminas\ServiceManager\ServiceManager;
+
+$root = realpath(__DIR__ . '/../');
+require __DIR__ . '/../vendor/autoload.php';
+chdir($root);
+
+ini_set('memory_limit', '1024M');
+
+/** @var ServiceManager $container */
+$container = include $root . '/config/container.php';
+$container->setFactory(Application::class, function (ContainerInterface $container) {
+    $commands = $container->get('config')['commands'];
+    $app = new Application('app');
+    $app->setCommandLoader(new ContainerCommandLoader(
+        $container,
+        []
+    ));
+
+    $logger = $container->get('console.logger');
+    foreach ($commands as $name => $commandName) {
+        $command = $container->get($commandName);
+        if ($command instanceof LoggerAwareInterface) {
+            $command->setLogger($logger->withName($name));
+        }
+
+        if (! is_int($name)) {
+            $command->setName($name);
+        }
+
+        $app->add($command);
+    }
+
+    return $app;
+});
+
+
+$application = $container->get(Application::class);
+$application->run(null, $container->get(ConsoleOutput::class));

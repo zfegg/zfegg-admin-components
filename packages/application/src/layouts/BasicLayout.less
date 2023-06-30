@@ -1,0 +1,37 @@
+@import '../assets/variables';
+
+.ant-pro-global-header-logo {
+  min-width: 192px;
+}
+
+.logo-icon {
+  background: url('../assets/logo-blue.png');
+  background-size: auto 100%;
+  width: calc(230px * 45/65);
+  height: 45px;
+  image-rendering: -webkit-optimize-contrast;
+}
+.logo-text {
+  background: url('../assets/logo-white.png') right;
+  background-size: auto 100%;
+  width: 105px;
+  height: 30px;
+}
+
+.@{yc-admin-prefix} {
+  &layout-header-action {
+    line-height: 0;
+    padding: 8px;
+    color: @text-color;
+
+    .ant-badge  {
+      font-size: 16px;
+    }
+    &:hover,
+    &.focus {
+      border-radius: 6px;
+      color: @text-color;
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+  }
+}

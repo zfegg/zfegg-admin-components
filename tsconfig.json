@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@zfegg/admin-admin": ["packages/admin/src"],
+      "@zfegg/admin-application": ["packages/application/src"],
+      "@zfegg/admin-base-project": ["packages/base-project/src"],
+      "@zfegg/admin-data-source-components": ["packages/data-source-components/src"]
+    }
+  },
+  "extends": "./tsconfig.base.json"
+}

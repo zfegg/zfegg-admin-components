@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "avatar": {
+      "type": ["string", "null"]
+    },
+    "config": {
+      "type": ["object", "null"]
+    }
+  },
+  "additionalProperties": false
+}

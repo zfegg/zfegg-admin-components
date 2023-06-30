@@ -1,0 +1,39 @@
+{
+  "name": "@zfegg/admin-application",
+  "version": "0.5.10",
+  "license": "MIT",
+  "author": "Moln",
+  "scripts": {
+    "build": "vite build && tsc",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "vite build && tsc"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "@ant-design/pro-layout": "^7.1.13",
+    "@moln/dependency-container": "^1.0.6",
+    "@moln/react-ioc": "^0.1.2",
+    "js-cookie": "*",
+    "path-to-regexp": "^6.2.1",
+    "react-router-dom": "^6.11.0"
+  },
+  "peerDependencies": {
+    "ajv": "^8.6.0",
+    "antd": ">=4.23.0",
+    "react": ">=17"
+  },
+  "source": "src/index.ts",
+  "module": "dist/es/index.js",
+  "main": "dist/cjs/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "homepage": "https://github.com/zfegg/zfegg-admin-components"
+}
