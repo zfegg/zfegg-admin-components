@@ -1,7 +1,7 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
 import {Resources} from "@moln/data-source";
 import axios, {AxiosInstance} from "axios";
-import {BasicLayout, CONFIG_KEY, IConfigProvider, RouteConfigMap, Security, Welcome} from "@zfegg/admin-application";
+import {BasicLayout, CONFIG_KEY, IConfigProvider, RouteConfigMap, Security, Welcome} from "@zfegg/admin-layout";
 import ProjectService from "./services/ProjectService";
 import {groupSchema, memberSchema, projectSchema} from "./constants";
 import Ajv from "ajv";

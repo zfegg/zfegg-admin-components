@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
 import {AuthUser} from "../interfaces";
-import {Authentication} from "@zfegg/admin-application";
+import {Authentication} from "../../../layout";
 import {useService} from "@moln/react-ioc";
 
 const Permission: FC<{ name: string, children: ReactNode}> = ({name, children}) => {

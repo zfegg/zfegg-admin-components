@@ -16,7 +16,7 @@ import RoleTag from "../components/RoleTag";
 import {Binding, IConfigProvider, IUser} from "../interfaces";
 import RoleSelect from "../components/RoleSelect";
 import {addUserSchema, CONFIG_KEY, PROVIDERS, Status, STATUS_TEXT} from "../constants";
-import {useMatchedRoute} from "@zfegg/admin-application";
+import {useMatchedRoute} from "../../../layout";
 import {useRequest} from "ahooks";
 
 const EnableButton: FC<{ users: IDataSource<IUser>, row: IUser }> = observer(({users, row}) => {

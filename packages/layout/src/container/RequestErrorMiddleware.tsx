@@ -41,7 +41,7 @@ const RequestErrorMiddleware: ServiceMiddleware<AxiosInstance> = (container, __,
                     title: '认证无效!',
                     content: <div>你的当前页面认证失效{url ? ', 点击确认跳转登录页面' : ''}!</div>,
                     onOk() {
-                        redirectLogin(container.get('history'), url);
+                        redirectLogin(container.get('router'), url);
                     },
                 });
                 break;
@@ -72,6 +72,7 @@ const RequestErrorMiddleware: ServiceMiddleware<AxiosInstance> = (container, __,
             default:
                 const errorText =
                         response.data?.message ||
+                        response.data?.detail ||
                         codeMessage[response.status as keyof typeof codeMessage] ||
                         response.statusText;
                 const {status} = response;

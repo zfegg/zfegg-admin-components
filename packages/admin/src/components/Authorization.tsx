@@ -1,6 +1,6 @@
 import {FC, ReactNode, useMemo} from "react";
 import {AuthUser} from "../interfaces";
-import {Authentication, Forbidden, RouteConfig, useMatchedRoute, matchRoutes} from "@zfegg/admin-application";
+import {Authentication, Forbidden, RouteConfig, useMatchedRoute, matchRoutes} from "../../../layout";
 import {useService} from "@moln/react-ioc";
 import {useLocation} from 'react-router-dom';
 

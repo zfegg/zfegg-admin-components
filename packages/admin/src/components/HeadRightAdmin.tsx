@@ -4,7 +4,7 @@ import {Tooltip} from "antd";
 import React, {FC} from "react";
 import {ReactComponent as IconAdmin} from '../assets/icon-admin.svg';
 import {useService} from "@moln/react-ioc";
-import {Authentication, useMatchedRoute} from "@zfegg/admin-application";
+import {Authentication, useMatchedRoute} from "../../../layout";
 
 const HeadRightAdmin: FC & {index?: number} = () => {
 

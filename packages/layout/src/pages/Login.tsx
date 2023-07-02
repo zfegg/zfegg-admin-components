@@ -5,7 +5,7 @@ import styles from './login.module.less';
 import {useService} from "@moln/react-ioc";
 import {DefaultFooter} from "@ant-design/pro-layout";
 import {useLocation, useNavigate} from "react-router";
-import {Authentication} from "../authentication";
+import {Authentication} from "../services/authentication";
 import {CONFIG_KEY} from "../constants";
 import {IConfigProvider} from "../interfaces";
 
@@ -27,8 +27,6 @@ const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [errorMsg, setErrorMsg] = useState<string>();
-    const disabledzfeggOAuth2 = useService<Record<string, IConfigProvider>>('config')?.[CONFIG_KEY]?.disabledzfeggOAuth2 || false
-
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (data: {email: string, password: string}) => {
@@ -94,11 +92,6 @@ const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
                     >登录</Button>
                 </Form.Item>
             </Form>
-            {!disabledzfeggOAuth2 && (
-                <div className={styles.other}>
-                    <Button href={"/zfegg/admin-center-auth/login" + location.search} block size={size} style={{width: "100%"}}>云蟾员工账号登录</Button>
-                </div>
-            )}
         </div>
     );
 };

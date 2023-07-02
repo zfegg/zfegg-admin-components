@@ -4,7 +4,7 @@ import {Resources} from "@moln/data-source";
 import {Observer} from "mobx-react";
 import {Button, DatePicker, Drawer, Form, Space, Tag} from "antd";
 import {PageContainer} from "@ant-design/pro-layout";
-import {UserAvatar, useMatchedRoute} from "@zfegg/admin-application";
+import {UserAvatar, useMatchedRoute} from "../../../layout";
 import {Group, Member, ProjectParam} from "../interfaces";
 import {DeleteButton, FormDrawer, ProColumnType, ProTable} from "@zfegg/admin-data-source-components";
 import {useParams, useNavigate} from "react-router-dom";

@@ -1,4 +1,4 @@
-import {RouteConfig as AppRouteConfig, User} from "@zfegg/admin-application";
+import {RouteConfig as AppRouteConfig, User} from "../../layout";
 import {Status} from "./constants";
 import {PROVIDERS} from "./constants";
 

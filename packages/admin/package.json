@@ -2,7 +2,7 @@
   "name": "@zfegg/admin-admin",
   "version": "0.5.6",
   "license": "MIT",
-  "author": "Moln",
+  "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
     "build": "vite build && tsc",
     "lint": "eslint ./src",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@moln/data-source": "^0.4.5",
     "@moln/react-ioc": "^0.1.2",
-    "@zfegg/admin-application": "^0.5.10",
+    "@zfegg/admin-layout": "^0.5.10",
     "@zfegg/admin-data-source-components": "^0.4.0",
     "ahooks": "^3.1.2",
     "lodash": "*",

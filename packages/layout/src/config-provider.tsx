@@ -4,7 +4,7 @@ import {
     InjectionToken,
     ServiceMiddleware,
 } from '@moln/dependency-container';
-import {Authentication} from './authentication';
+import {Authentication} from './services/authentication';
 import BasicLayout from './layouts/BasicLayout';
 import RequestErrorMiddleware from './container/RequestErrorMiddleware';
 import {createHashHistory} from 'history';

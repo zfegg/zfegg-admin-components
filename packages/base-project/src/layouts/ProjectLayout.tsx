@@ -9,7 +9,7 @@ import {
     NotFound,
     RouteConfig,
     useMatchedRoute
-} from "@zfegg/admin-application";
+} from "../../../layout";
 import {useRequest} from "ahooks";
 import ProjectService from "../services/ProjectService";
 import ProjectAvatar from "../components/ProjectAvatar";

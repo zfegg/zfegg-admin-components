@@ -1,7 +1,7 @@
 import React, {FC, ReactNode, useEffect, useState} from 'react';
 import {PageLoading} from '@ant-design/pro-layout';
 import {useService} from '@moln/react-ioc';
-import {Authentication} from '../authentication';
+import {Authentication} from '../services/authentication';
 
 interface SecurityProps {
     children: ReactNode;

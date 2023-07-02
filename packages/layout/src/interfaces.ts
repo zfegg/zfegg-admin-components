@@ -1,8 +1,10 @@
 import type {ComponentProps, ComponentType} from 'react';
 import type {ProLayout, MenuDataItem} from '@ant-design/pro-layout';
-import type {History} from 'history';
 import {RouteObject} from "react-router";
 import {MenuProps} from "antd";
+import {LoaderFunctionArgs} from "react-router-dom";
+import {DependencyContainerInterface} from "@moln/dependency-container";
+import {Router} from "@remix-run/router";
 
 export type HeaderViewProps = Exclude<
     Required<ComponentProps<typeof ProLayout>['rightContentRender']>,
@@ -24,23 +26,28 @@ export interface IConfigProvider {
     })[];
     headerComponents?: (ComponentType<HeaderViewProps> & { index?: number })[];
     // routeWrappers?: Parameters<typeof renderRoutes>[0];
-    redirectLogin?: (history: History, href?: string) => void;
+    redirectLogin?: (router: Router, href?: string) => void;
     avatarDropdownProps?: AvatarDropdownProps
     layoutProps?: ComponentProps<typeof ProLayout>
-    disabledzfeggOAuth2?: boolean
 }
 
-export interface RouteConfig extends RouteObject, Omit<MenuDataItem, 'children'> {
+export type RouteConfig = RouteObject & Omit<MenuDataItem, 'children'> & {
     children?: RouteConfig[]
     priority?: number; // 路由执行优先级排序
-    component?: ComponentType<any>
 }
 
 export interface RouteConfigItem extends Omit<RouteConfig, 'children'> {
     children?: RouteConfigMap
+    component?: ComponentType<any>
 }
 
 export type RouteConfigMap = Record<string, RouteConfigItem>;
+
+export interface LoaderArgs extends LoaderFunctionArgs {
+    context: DependencyContainerInterface
+}
+
+export type LoaderReturn<T extends (...args: any) => any> = Awaited<ReturnType<T>>
 
 export interface User {
     real_name: string;
@@ -48,7 +55,6 @@ export interface User {
     admin: boolean;
     [key: string]: any;
 }
-
 export interface AuthenticationInterface<U extends User> {
     user: U | undefined | null;
     fetchUser(): Promise<U>;

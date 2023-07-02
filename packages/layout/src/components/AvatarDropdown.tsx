@@ -1,20 +1,20 @@
 import {LogoutOutlined} from '@ant-design/icons';
 import {Avatar, Dropdown, Menu} from 'antd';
-import React, {FC, useMemo} from 'react';
+import React, {FC, PropsWithChildren, useMemo} from 'react';
 import {useService} from '@moln/react-ioc';
-import {Authentication} from '../authentication';
-import type {History} from 'history';
+import {Authentication} from '../services/authentication';
 import styles from './AvatarDropdown.module.less';
 import {gotoLogin} from '../utils';
 import {CONFIG_KEY} from '../constants';
 import {AvatarDropdownProps, IConfigProvider} from "../interfaces";
+import {Router} from "@remix-run/router";
 
 
-const AvatarDropdown: FC<AvatarDropdownProps> & { index?: number } = ({menuItems, git}) => {
+const AvatarDropdown: FC<PropsWithChildren<AvatarDropdownProps>> & { index?: number } = ({menuItems, children}) => {
     const auth = useService(Authentication);
     const user = auth.user!;
     const destroy = auth.destroy;
-    const history = useService<History>('history');
+    const router = useService<Router>('router');
     const config = useService<Record<string, any>>('config')[CONFIG_KEY] as IConfigProvider
     const redirectLogin = config.redirectLogin || gotoLogin;
 
@@ -27,7 +27,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> & { index?: number } = ({menuItems
             items.push({key: 'divider-profile', type: "divider"})
         }
 
-        git = git || config.avatarDropdownProps?.git
+        const git = config.avatarDropdownProps?.git
         if (git) {
             const {tag, hash} = git
             items.push({
@@ -43,13 +43,13 @@ const AvatarDropdown: FC<AvatarDropdownProps> & { index?: number } = ({menuItems
                 key: "logout",
                 onClick: async () => {
                     await destroy();
-                    (redirectLogin || gotoLogin)(history);
+                    (redirectLogin || gotoLogin)(router);
                 },
                 icon: <LogoutOutlined />,
                 label: '退出登录',
             }
         ];
-    }, [config.avatarDropdownProps, menuItems, git])
+    }, [config.avatarDropdownProps, menuItems])
 
     return (
         <Dropdown menu={{items: menuItems}} arrow>

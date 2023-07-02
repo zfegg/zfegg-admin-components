@@ -1,8 +1,8 @@
 {
-  "name": "@zfegg/admin-application",
+  "name": "@zfegg/admin-layout",
   "version": "0.5.10",
   "license": "MIT",
-  "author": "Moln",
+  "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
     "build": "vite build && tsc",
     "lint": "eslint ./src",
@@ -15,8 +15,7 @@
     "@moln/dependency-container": "^1.0.6",
     "@moln/react-ioc": "^0.1.2",
     "js-cookie": "*",
-    "path-to-regexp": "^6.2.1",
-    "react-router-dom": "^6.11.0"
+    "react-router-dom": "^6.10.0"
   },
   "peerDependencies": {
     "ajv": "^8.6.0",

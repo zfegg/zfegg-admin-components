@@ -1,6 +1,6 @@
 # 基础后台相关组件
 
-- [@zfegg/admin-application](packages/application) : 基础后台布局及应用程序
+- [@zfegg/admin-application](packages/layout) : 基础后台布局及应用程序
 - [@zfegg/admin-admin](packages/admin) : 管理员组件
 - [@zfegg/admin-authorization](packages/authorization) : 授权管理组件
 - [@zfegg/admin-data-source-components](packages/data-source-components) :
@@ -30,7 +30,7 @@ TODO
 | 组件 | 单元测试 |
 |-----|--------|
 | [@zfegg/admin-admin](packages/admin) | TODO |
-| [@zfegg/admin-application](packages/application) | TODO |
+| [@zfegg/admin-application](packages/layout) | TODO |
 | [@zfegg/admin-data-source-components](packages/data-source-components) | TODO |
 | [@zfegg/admin-base-project](packages/base-project) | TODO |
 

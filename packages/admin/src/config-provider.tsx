@@ -1,6 +1,6 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
 import React, {lazy} from "react";
-import {RouteConfigMap, CONFIG_KEY, IConfigProvider as ApplicationIConfigProvider, BasicLayout, Security, Welcome} from "@zfegg/admin-application";
+import {RouteConfigMap, CONFIG_KEY, IConfigProvider as ApplicationIConfigProvider, BasicLayout, Security, Welcome} from "@zfegg/admin-layout";
 import HeadRightAdmin from "./components/HeadRightAdmin";
 import Ajv from "ajv";
 import {CONFIG_KEY as ADMIN_CONFIG_KEY, roleSchema, userSchema} from './constants';
