@@ -7,7 +7,7 @@ import {PageContainer} from "@ant-design/pro-layout";
 import ProCard from "@ant-design/pro-card";
 import {observer} from "mobx-react";
 import {IConfigProvider, IRole, IUser} from "../interfaces";
-import {UserAvatar} from "@zfegg/admin-application";
+import {UserAvatar} from "@zfegg/admin-layout";
 import {filterSchemaByProperties, FormDrawer} from "@zfegg/admin-data-source-components";
 import styles from './RoleList.module.less'
 import UserSelect from "../components/UserSelect";

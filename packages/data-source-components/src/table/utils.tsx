@@ -42,7 +42,7 @@ type Option = {label: ReactNode, value: string | number};
 export function valueEnumToOptions(valueEnum: Exclude<ProColumnType['valueEnum'], Function | undefined>): Option[] {
     const options: Option[] = [];
     if (valueEnum instanceof Map) {
-        valueEnum.forEach((item, value) => {
+        (valueEnum as Map<string, string>).forEach((item, value) => {
             options.push({value, label: (item as any).text || item})
         })
     } else {

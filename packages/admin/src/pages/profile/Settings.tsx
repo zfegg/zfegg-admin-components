@@ -4,7 +4,7 @@ import {PageContainer} from '@ant-design/pro-layout';
 import {UserProfile} from "../../interfaces";
 import {useService} from "@moln/react-ioc";
 import ProfileService from "../../services/ProfileService";
-import {AvatarUpload} from "@zfegg/admin-application";
+import {AvatarUpload} from "@zfegg/admin-layout";
 
 
 const layout = {

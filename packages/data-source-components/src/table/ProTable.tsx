@@ -1,62 +1,83 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo, useRef} from "react";
 import {IDataSource} from "@moln/data-source";
 import {observer} from "mobx-react";
-import AntdProTable, {ColumnsState, ProTableProps} from "@ant-design/pro-table";
-import {ParamsType} from "@ant-design/pro-provider";
+import AntdProTable, {ProTableProps} from "@ant-design/pro-table";
 import {ProColumnType} from "./interfaces";
-import {BindRoute, initTable} from "./internal/table";
+import {fromDataSourceFilterToFilterValues, fromFilterValuesToDSFilters, initTable} from "./internal/utils";
+import {ProFormInstance} from "@ant-design/pro-components";
+import {FilterValues} from "../filters/interfaces";
+import {observe} from "mobx";
+import {schemaToColumns} from "./utils";
 
-interface Props<T extends Record<string, any>, U extends ParamsType, ValueType = 'text'> extends
-    Omit<ProTableProps<T, U, ValueType>, 'columns' | 'dataSource' | 'columnsStateMap' | 'onColumnsStateChange'>
+interface Props<T extends Record<string, any>, ValueType = 'text'> extends
+    Omit<ProTableProps<T, FilterValues, ValueType>, 'columns' | 'dataSource' | 'columnsStateMap' | 'onColumnsStateChange'>
 {
     dataSource: IDataSource<T>,
     autoFetch?: boolean,
     columns?: ProColumnType<T, ValueType>[] | undefined,
-    bindRoute?: BindRoute,
 }
 
-const genColumnKey = (key?: (string | number) | (string | number)[], index?: number): string => {
-    if (key) {
-        return Array.isArray(key) ? key.join('-') : key.toString();
-    }
-    return `${index}`;
-};
+function initSearchable<T extends Record<string, any>, ValueType>(
+    dataSource: IDataSource<T>,
+    search: ProTableProps<T, FilterValues, ValueType>['search'],
+    columns: ProColumnType<T, ValueType>[],
+): ProTableProps<T, FilterValues, ValueType> {
+    const form = useRef<ProFormInstance>();
 
-function ProTable<T extends Record<string, any>, U extends ParamsType, ValueType = 'text'>({
-    columns,
+    useEffect(() => {
+        if (!search) {
+            return;
+        }
+        return observe(dataSource, "filter", (change) => {
+            form.current?.setFieldsValue(fromDataSourceFilterToFilterValues(dataSource.filter))
+        })
+    }, [search])
+
+    if (search) {
+        columns.forEach((col) => {
+            col.search = col.filterable ? col.search : false
+            col.filterDropdown = undefined
+        })
+
+        return {
+            formRef: form,
+            onSubmit: (params) => {
+                dataSource.setFilters(fromFilterValuesToDSFilters(dataSource, params))
+                dataSource.fetch()
+            }
+        }
+    } else {
+        return {
+            formRef: form,
+        }
+    }
+}
+
+
+function ProTable<T extends Record<string, any>, ValueType = 'text'>({
     dataSource,
+    columns = schemaToColumns(dataSource.schema.schema) as any[],
     autoFetch = true,
-    bindRoute = false,
     defaultSize,
     pagination,
     ...props
-}: Props<T, U, ValueType>) {
+}: Props<T, ValueType>) {
 
-    const baseProps: Record<string, any> = initTable(dataSource, columns, bindRoute, autoFetch, pagination)
-
-    const defaultColumnsStateMap = useMemo(() => {
-        const columnsStateMap: Record<string, ColumnsState> = {}
-        columns?.forEach((col, index) => {
-            if (col.defaultState) {
-                return columnsStateMap[genColumnKey(col.key || col.dataIndex, index)] = col.defaultState
-            }
-        })
-        return columnsStateMap
-    }, [columns])
+    const baseProps = initTable<T, ValueType>(dataSource, columns, autoFetch, pagination)
+    const searchProps = initSearchable(dataSource, props.search, baseProps.columns!)
 
     return (
-        <AntdProTable<T, U, ValueType>
+        <AntdProTable<T, FilterValues, ValueType>
             options={{
                 reload: () => dataSource.fetch(),
             }}
             search={false}
-            columnsState={{
-                defaultValue: defaultColumnsStateMap
-            }}
+            {...searchProps}
             {...baseProps}
             {...props}
         />
     )
 }
+
 
 export default observer(ProTable);

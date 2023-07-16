@@ -4,7 +4,7 @@ import {observer} from "mobx-react";
 import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
 import {Transfer, TransferProps} from "antd";
-import {UserAvatar} from "@zfegg/admin-application";
+import {UserAvatar} from "@zfegg/admin-layout";
 
 type ValueType = (number | IUser)[];
 type Props = Partial<Omit<TransferProps<IUser>, 'dataSource'>> & {

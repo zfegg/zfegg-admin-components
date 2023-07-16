@@ -1,21 +1,21 @@
-import {Link} from "react-router-dom";
+import {Link, useMatches} from "react-router-dom";
 import Icon from "@ant-design/icons";
 import {Tooltip} from "antd";
-import React, {FC} from "react";
+import {FC} from "react";
 import {ReactComponent as IconAdmin} from '../assets/icon-admin.svg';
 import {useService} from "@moln/react-ioc";
-import {Authentication, useMatchedRoute} from "@zfegg/admin-application";
+import {Authentication} from "@zfegg/admin-layout";
 
 const HeadRightAdmin: FC & {index?: number} = () => {
 
-    const route = useMatchedRoute()!;
+    const route = useMatches()[0] as any;
     const user = useService(Authentication).user!
 
     if (! user.admin) {
         return null
     }
 
-    const classes = ['yca-layout-header-action'];
+    const classes = ['zfe-layout-header-action'];
     if (route.key?.toString().indexOf('admin') === 0) {
         classes.push('focus')
     }

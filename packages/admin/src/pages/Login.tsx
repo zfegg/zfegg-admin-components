@@ -1,5 +1,5 @@
 import {ComponentProps, FC} from "react";
-import {Login as AppLogin} from '@zfegg/admin-application'
+import {Login as AppLogin} from '@zfegg/admin-layout';
 import {useService} from "@moln/react-ioc";
 import {AxiosInstance} from "axios";
 

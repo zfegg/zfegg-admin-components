@@ -8,7 +8,7 @@ import {Project} from "../interfaces";
 import {useRequest} from "ahooks";
 import {AxiosInstance} from "axios";
 import {useOutletContext} from "react-router";
-import {AvatarUpload} from "@zfegg/admin-application";
+import {AvatarUpload} from "@zfegg/admin-layout";
 
 const SettingSecret: FC<{project: Project, onFinish: () => Promise<void>}> = ({project, onFinish}) => {
 

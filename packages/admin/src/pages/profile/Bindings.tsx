@@ -1,5 +1,4 @@
 import {Button, List, Typography} from "antd";
-import {PROVIDERS} from "../../constants";
 import React, {useEffect, useState} from "react";
 import {useService} from "@moln/react-ioc";
 import {PageContainer} from "@ant-design/pro-layout";
@@ -26,7 +25,7 @@ const Bindings = () => {
                 <ProCard>
                     <List
                         bordered
-                        dataSource={Object.entries(PROVIDERS).map(([key, name]) => ({key, name}))}
+                        dataSource={Object.entries({}).map(([key, name]) => ({key, name}))}
                         renderItem={({key, name}) => {
                             const binding = user.bindings.find(item => item.provider === key)
                             if (! binding) {

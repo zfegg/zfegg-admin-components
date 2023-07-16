@@ -1,0 +1,23 @@
+@import '../assets/variables';
+
+.ant-pro-global-header-logo {
+  min-width: 192px;
+}
+
+.@{zfe-prefix} {
+  &layout-header-action {
+    line-height: 0;
+    padding: 8px;
+    color: @text-color;
+
+    .ant-badge  {
+      font-size: 16px;
+    }
+    &:hover,
+    &.focus {
+      border-radius: 6px;
+      color: @text-color;
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+  }
+}

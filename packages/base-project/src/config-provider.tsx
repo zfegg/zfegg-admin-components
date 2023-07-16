@@ -1,14 +1,22 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
 import {Resources} from "@moln/data-source";
 import axios, {AxiosInstance} from "axios";
-import {BasicLayout, CONFIG_KEY, IConfigProvider, RouteConfigMap, Security, Welcome} from "@zfegg/admin-application";
+import {
+    Authorization,
+    BasicLayout,
+    CONFIG_KEY,
+    IConfigProvider,
+    RouteConfigMap,
+    Security,
+    Welcome
+} from "@zfegg/admin-layout";
 import ProjectService from "./services/ProjectService";
 import {groupSchema, memberSchema, projectSchema} from "./constants";
 import Ajv from "ajv";
 import ProjectDropdown from "./components/HeaderContent";
 import ProjectLayout from "./layouts/ProjectLayout";
 import {AdminProjectList, General, Members} from "./pages";
-import {Authorization, CONFIG_KEY as ADMIN_CONFIG_KEY, IConfigProvider as AdminIConfigProvider} from "@zfegg/admin-admin";
+import {CONFIG_KEY as ADMIN_CONFIG_KEY, IConfigProvider as AdminIConfigProvider} from "@zfegg/admin-admin";
 
 const ConfigProvider = {
     dependencies: {

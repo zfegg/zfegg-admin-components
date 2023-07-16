@@ -15,8 +15,7 @@ import {observer} from "mobx-react";
 import RoleTag from "../components/RoleTag";
 import {Binding, IConfigProvider, IUser} from "../interfaces";
 import RoleSelect from "../components/RoleSelect";
-import {addUserSchema, CONFIG_KEY, PROVIDERS, Status, STATUS_TEXT} from "../constants";
-import {useMatchedRoute} from "@zfegg/admin-application";
+import {addUserSchema, CONFIG_KEY, Status, STATUS_TEXT} from "../constants";
 import {useRequest} from "ahooks";
 
 const EnableButton: FC<{ users: IDataSource<IUser>, row: IUser }> = observer(({users, row}) => {
@@ -240,7 +239,7 @@ export default () => {
     ];
 
     const bindingColumns: TableColumnsType<Binding & {user: IUser}> = [
-        {dataIndex: 'provider', title: '绑定', render: (_, row) => PROVIDERS[row.provider]},
+        {dataIndex: 'provider', title: '绑定', render: (_, row) => row.provider},
         {dataIndex: ['info', 'username'], title: '账号',},
         {dataIndex: 'created_at', title: '绑定时间'},
         {

@@ -1,15 +1,15 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
-import React, {lazy} from "react";
-import {RouteConfigMap, CONFIG_KEY, IConfigProvider as ApplicationIConfigProvider, BasicLayout, Security, Welcome} from "@zfegg/admin-application";
+import {lazy} from "react";
+import {RouteConfigMap, CONFIG_KEY, IConfigProvider as ApplicationIConfigProvider, BasicLayout, Security, Welcome, Authorization} from "@zfegg/admin-layout";
 import HeadRightAdmin from "./components/HeadRightAdmin";
 import Ajv from "ajv";
 import {CONFIG_KEY as ADMIN_CONFIG_KEY, roleSchema, userSchema} from './constants';
-import Authorization from "./components/Authorization";
 import {Link} from "react-router-dom";
 import {SettingOutlined} from "@ant-design/icons";
 import ProfileService from "./services/ProfileService";
 import Login from "./pages/Login";
 import {IConfigProvider} from "./interfaces";
+import {Router} from "@remix-run/router";
 
 const ConfigProvider = {
     dependencies: {
@@ -93,7 +93,12 @@ const ConfigProvider = {
         headerRightComponents: [
             HeadRightAdmin,
         ],
-        redirectLogin: (history) => history.push('/login'),
+        redirectLogin: (router: Router, href?: string) => {
+          router.navigate({
+              pathname: "/login",
+              search: href ? "redirect=" + encodeURIComponent(href) : undefined
+          })
+        },
         avatarDropdownProps: {
             menuItems: [
                 {key: "settings", icon: <SettingOutlined />, label: <Link to={'/profile/settings'}>个人设置</Link>},

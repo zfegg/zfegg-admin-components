@@ -5,7 +5,7 @@ import {Resources} from "@moln/data-source";
 import {Member, ProjectParam} from "../interfaces";
 import {useParams} from "react-router-dom";
 import {uniqBy} from "lodash";
-import {UserAvatar} from "@zfegg/admin-application";
+import {UserAvatar} from "@zfegg/admin-layout";
 import {observer} from "mobx-react";
 
 const { Option } = Select;

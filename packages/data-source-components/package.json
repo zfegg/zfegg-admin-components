@@ -1,26 +1,26 @@
 {
   "name": "@zfegg/admin-data-source-components",
-  "version": "0.4.0",
-  "license": "UNLICENSED",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
     "build": "vite build && tsc",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "prepare": "vite build && tsc"
+    "prepare": "npm run build"
   },
   "dependencies": {
-    "@ant-design/pro-table": "^3.0.22",
+    "@ant-design/pro-table": "^3.9.1",
     "@moln/data-source": "^0.4.1",
     "lodash": "*",
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.10.0"
   },
   "peerDependencies": {
-    "antd": ">=4.23.0",
+    "antd": "^5.0.0",
     "react": ">=17"
   },
-  "author": "Moln",
   "source": "src/index.ts",
   "module": "dist/es/index.js",
   "main": "dist/cjs/index.js",

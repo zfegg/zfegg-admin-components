@@ -3,9 +3,6 @@ import type {BaseRootSchema} from "@moln/data-source";
 import cloneDeep from "lodash/cloneDeep";
 
 export const CONFIG_KEY = '@zfegg/admin-admin';
-export const PROVIDERS = {
-    yc_admin_center: '云蟾员工账号',
-};
 
 export enum Status {
     disabled = 0,
