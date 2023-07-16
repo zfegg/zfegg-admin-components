@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 128,
+      "$filters": {
+        "$func": "dbal-exists",
+        "$vars": {
+          "table": "admin_roles",
+          "field": "name",
+          "db": "doctrine.connection.default"
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "users": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {"type": "integer"}
+            },
+            "additionalProperties": false
+          },
+          {"type": "integer"}
+        ]
+      }
+    },
+    "menus": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+    "name": "zfegg/admin-base-project",
+    "description": "基础后台多项目模块",
+    "authors": [
+        {
+            "name": "Moln",
+            "email": "moln.xie@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "zfegg\\Admin\\BaseProject\\" : "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "zfeggTest\\Admin\\BaseProject\\" : "test"
+        }
+    },
+    "require": {
+        "zfegg/admin-admin": "^0.6.3",
+        "gedmo/doctrine-extensions": "^3.4"
+    },
+    "extra": {
+        "laminas": {
+            "config-provider": "zfegg\\Admin\\BaseProject\\ConfigProvider"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "@zfegg/admin-data-source-components",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Moln <moln.xie@gmail.com>",
+  "scripts": {
+    "build": "vite build && tsc",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@ant-design/pro-table": "^3.9.1",
+    "@moln/data-source": "^0.4.1",
+    "lodash": "*",
+    "mobx": "^6.3.2",
+    "mobx-react": "^7.2.0",
+    "react-router-dom": "^6.10.0"
+  },
+  "peerDependencies": {
+    "antd": "^5.0.0",
+    "react": ">=17"
+  },
+  "source": "src/index.ts",
+  "module": "dist/es/index.js",
+  "main": "dist/cjs/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "homepage": "https://github.com/zfegg/zfegg-admin-components"
+}

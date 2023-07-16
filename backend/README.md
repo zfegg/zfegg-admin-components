@@ -1,0 +1,4 @@
+
+```shell
+php bin/console 
+```

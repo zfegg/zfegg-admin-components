@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "code": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "integer",
+      "enum": [0, 1]
+    },
+    "hooks": {
+      "type": "object"
+    },
+    "avatar": {
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": false
+}

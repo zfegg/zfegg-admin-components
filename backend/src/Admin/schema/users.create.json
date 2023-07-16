@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "maxLength": 128,
+      "format": "email"
+    },
+    "real_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "password": {
+      "type": "string",
+      "$transformers": {
+        "$func": "password_hash",
+        "$vars": {"0": "2y"}
+      }
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "default": []
+    },
+    "status": {
+      "type": "integer",
+      "enum": [0, 1, 2]
+    },
+    "admin": {
+      "type": "boolean"
+    }
+  },
+  "required": ["email", "real_name", "roles", "password", "status", "admin"],
+  "additionalProperties": false
+}
