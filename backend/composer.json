@@ -18,9 +18,10 @@
         "php": ">=8.0",
         "ext-json": "*",
         "akrabat/ip-address-middleware": "^2.0",
-        "zfegg/psr11-symfony-cache": "^0.1.0",
+        "firebase/php-jwt": "^6.8",
         "gedmo/doctrine-extensions": "^3.4",
         "laminas/laminas-config-aggregator": "^1.2",
+        "laminas/laminas-di": "^3.12",
         "laminas/laminas-diactoros": "^2.3.0",
         "laminas/laminas-servicemanager": "^3.4",
         "mezzio/mezzio": "^3.2.1",
@@ -29,13 +30,16 @@
         "mezzio/mezzio-helpers": "^5.3",
         "mezzio/mezzio-problem-details": "^1.2",
         "mezzio/mezzio-session-ext": "^1.10",
+        "nikolaposa/monolog-factory": "^3.1",
         "opis/json-schema": "^2.1",
         "roave/psr-container-doctrine": "^3.5.0",
         "symfony/property-access": "*",
-        "nikolaposa/monolog-factory": "^3.1",
-        "zfegg/api-resource-doctrine": "^0.4.0",
+        "zfegg/api-resource-doctrine": "^0.5.0",
+        "zfegg/attachment-handler": "^0.1.1",
         "zfegg/content-validation": "^5.1",
-        "zfegg/doctrine-helper": "^0.2.0"
+        "zfegg/doctrine-helper": "^0.2.0",
+        "zfegg/psr-mvc": "^2.2.1",
+        "zfegg/psr11-symfony-cache": "^0.1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.7.1",
@@ -56,16 +60,16 @@
         "psr-4": {
             "App\\": "src/App/src/",
             "Book\\": "src/Book/src/",
-            "zfegg\\Admin\\Admin\\": "src/Admin/src",
-            "zfegg\\Admin\\BaseProject\\": "src/BaseProject/src"
+            "Zfegg\\Admin\\Admin\\": "src/Admin/src/",
+            "Zfegg\\Admin\\BaseProject\\": "src/BaseProject/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "": "test/",
             "BookTest\\": "src/Book/test/",
-            "zfeggTest\\Admin\\Admin\\": "src/Admin/test",
-            "zfeggTest\\Admin\\BaseProject\\": "src/BaseProject/test"
+            "ZfeggTest\\Admin\\Admin\\": "src/Admin/test",
+            "ZfeggTest\\Admin\\BaseProject\\": "src/BaseProject/test"
         }
     },
     "scripts": {

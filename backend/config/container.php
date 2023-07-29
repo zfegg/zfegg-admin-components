@@ -14,7 +14,7 @@ $dependencies['services']['config'] = $config;
 
 // Build container
 $container = new ServiceManager($dependencies);
-$container->addAbstractFactory(new ReflectionBasedAbstractFactory($dependencies['aliases']));
+//$container->addAbstractFactory(new ReflectionBasedAbstractFactory($dependencies['aliases']));
 $container->setService(ContainerInterface::class, $container);
 
 return $container;

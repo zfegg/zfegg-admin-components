@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Zfegg\Admin\Admin\Remembering\RememberingMe;
 use Zfegg\ContentValidation\ContentValidationMiddleware;
 use Zfegg\ContentValidation\ContentValidationMiddlewareFactory;
-use Zfegg\PsrMvc\Container\CallbackHandlerAbstractFactory;
 
 return [
     // Provides application-wide services.
@@ -27,10 +27,23 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
             ContentValidationMiddleware::class => ContentValidationMiddlewareFactory::class,
-            ObjectNormalizer::class => \Laminas\ServiceManager\Factory\InvokableFactory::class,
         ],
         'abstract_factories' => [
-//            CallbackHandlerAbstractFactory::class,
-        ]
+        ],
+
+        'auto' => [
+            'aot' => [
+                'namespace' => 'AppAoT\Generated',
+                'directory' => __DIR__ . '/../../data/runtime',
+                'logger' => Psr\Log\LoggerInterface::class,
+            ],
+            'types' => [
+                RememberingMe::class => [
+                    'parameters' => [
+                        'rememberSecret' => 'foooooooo',
+                    ],
+                ]
+            ]
+        ],
     ],
 ];

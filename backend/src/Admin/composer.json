@@ -9,12 +9,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "zfegg\\Admin\\Admin\\" : "src"
+            "Zfegg\\Admin\\Admin\\" : "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "zfeggTest\\Admin\\Admin\\" : "test"
+            "ZfeggTest\\Admin\\Admin\\" : "test"
         }
     },
     "require": {
@@ -28,7 +28,7 @@
     },
     "extra": {
         "laminas": {
-            "config-provider": "zfegg\\Admin\\Admin\\ConfigProvider"
+            "config-provider": "Zfegg\\Admin\\Admin\\ConfigProvider"
         }
     }
 }

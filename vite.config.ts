@@ -16,13 +16,13 @@ export default defineConfig(() => {
             //     "@zfegg/admin-layout": "./packages/layout"
             //   },
             alias: [
-                {find: '@zfegg/admin-admin/src', replacement: resolve(__dirname, './packages/admin/src')},
+                // {find: '@zfegg/admin-admin/src', replacement: resolve(__dirname, './packages/admin/src')},
                 {find: '@zfegg/admin-admin', replacement: resolve(__dirname, './packages/admin/src')},
-                {find: '@zfegg/admin-layout/src', replacement: resolve(__dirname, './packages/layout/src'),},
+                // {find: '@zfegg/admin-layout/src', replacement: resolve(__dirname, './packages/layout/src'),},
                 {find: '@zfegg/admin-layout', replacement: resolve(__dirname, './packages/layout/src'),},
-                {find: '@zfegg/admin-data-source-components/src', replacement: resolve(__dirname, './packages/data-source-components/src'),},
+                // {find: '@zfegg/admin-data-source-components/src', replacement: resolve(__dirname, './packages/data-source-components/src'),},
                 {find: '@zfegg/admin-data-source-components', replacement: resolve(__dirname, './packages/data-source-components/src'),},
-                {find: '@zfegg/admin-base-project/src', replacement: resolve(__dirname, './packages/base-project/src'),},
+                // {find: '@zfegg/admin-base-project/src', replacement: resolve(__dirname, './packages/base-project/src'),},
                 {find: '@zfegg/admin-base-project', replacement: resolve(__dirname, './packages/base-project/src'),},
             ],
         },

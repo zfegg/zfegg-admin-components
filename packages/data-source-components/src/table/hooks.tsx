@@ -76,10 +76,9 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
                 console.error('try set error:', e)
             }
         }, [str])
-        return str;
     }
 
-    const filterStr = trySet('filter', (value) => {
+    trySet('filter', (value) => {
         const oldVal = JSON.stringify(fromDataSourceFilterToFilterValues(dataSource.filter))
         console.log(value , '===', oldVal)
         if (value === oldVal) {
@@ -90,7 +89,7 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
         result = filterEmpty(result)
         dataSource.setFilters(fromFilterValuesToDSFilters(dataSource, result))
     });
-    const sortStr = trySet('sort', (value) => {
+    trySet('sort', (value) => {
         let result = jsonParse(value!)
         if (! isArray(value)) {
             return null;
@@ -107,9 +106,9 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
             }
         }
     }
-    const page = trySet('page', numberSetter('page'));
-    const pageSize = trySet('pageSize', numberSetter('pageSize'));
-    const cursor = trySet('cursor', numberSetter('cursor'));
+    trySet('page', numberSetter('page'));
+    trySet('pageSize', numberSetter('pageSize'));
+    trySet('cursor', numberSetter('cursor'));
 
     useEffect(() => {
         return observe(dataSource, 'filter', (change) => {
@@ -151,5 +150,5 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
 
     useEffect(() => {
         dataSource.fetch()
-    }, [filterStr, sortStr, page, pageSize, cursor])
+    }, [])
 }

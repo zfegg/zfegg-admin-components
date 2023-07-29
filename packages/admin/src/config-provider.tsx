@@ -1,6 +1,14 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
 import {lazy} from "react";
-import {RouteConfigMap, CONFIG_KEY, IConfigProvider as ApplicationIConfigProvider, BasicLayout, Security, Welcome, Authorization} from "@zfegg/admin-layout";
+import {
+    RouteConfigMap,
+    CONFIG_KEY,
+    IConfigProvider as ApplicationIConfigProvider,
+    BasicLayout,
+    Security,
+    Welcome,
+    Authorization
+} from "@zfegg/admin-layout";
 import HeadRightAdmin from "./components/HeadRightAdmin";
 import Ajv from "ajv";
 import {CONFIG_KEY as ADMIN_CONFIG_KEY, roleSchema, userSchema} from './constants';
@@ -32,13 +40,13 @@ const ConfigProvider = {
         'login': {
             "name": "系统管理",
             "path": "/login",
-            "element": <Login />,
+            "element": <Login/>,
             priority: 1000,
         },
         profile: {
             path: '/profile',
             name: '应用',
-            element: <Security><BasicLayout /></Security>,
+            element: <Security><BasicLayout/></Security>,
             children: {
                 settings: {
                     path: '/profile/settings',
@@ -61,7 +69,7 @@ const ConfigProvider = {
         'admin': {
             "name": "系统管理",
             "path": "/admin",
-            "element": <Security><Authorization><BasicLayout /></Authorization></Security>,
+            "element": <Security><Authorization><BasicLayout/></Authorization></Security>,
             priority: 1000,
             authorization: true,
             children: {
@@ -93,15 +101,9 @@ const ConfigProvider = {
         headerRightComponents: [
             HeadRightAdmin,
         ],
-        redirectLogin: (router: Router, href?: string) => {
-          router.navigate({
-              pathname: "/login",
-              search: href ? "redirect=" + encodeURIComponent(href) : undefined
-          })
-        },
         avatarDropdownProps: {
             menuItems: [
-                {key: "settings", icon: <SettingOutlined />, label: <Link to={'/profile/settings'}>个人设置</Link>},
+                {key: "settings", icon: <SettingOutlined/>, label: <Link to={'/profile/settings'}>个人设置</Link>},
             ]
         },
     } as ApplicationIConfigProvider,

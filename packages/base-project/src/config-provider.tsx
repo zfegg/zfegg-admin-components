@@ -44,7 +44,7 @@ const ConfigProvider = {
     } as DependencyConfigInterface,
     routes: {
         application: {
-            element: <Security><Authorization><BasicLayout menuRender={false} /></Authorization></Security>,
+            // element: <Security><Authorization><BasicLayout menuRender={false} /></Authorization></Security>,
         },
         'project': {
             priority: 100,

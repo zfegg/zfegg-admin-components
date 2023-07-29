@@ -36,13 +36,13 @@ class UserTest extends AbstractActionTestCase
             'real_name' => 'Test',
             'admin' => '0',
             'status' => '1',
-            'roles' => [['id' => $role1->getId()]],
+            'roles' => [$role1->getId()],
             'add_test' => 1,
         ];
 
         $id = $this->apiCreate($data);
         $this->apiGetList();
-        $this->apiPatch($id, ['password' => 'xxxxxx', 'roles' => [['id' => $role2->getId()]],]);
+        $this->apiPatch($id, ['password' => 'xxxxxx', 'roles' => [$role2->getId()],]);
     }
 
     public function testJoin(): void

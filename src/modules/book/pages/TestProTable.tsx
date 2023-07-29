@@ -1,12 +1,18 @@
 import React, {Component, useMemo} from "react";
 import {PageContainer} from "@ant-design/pro-layout";
 import {Button, Space} from "antd";
-import {DeleteButton, FormDrawer, ProColumnType, ProTable,} from "@zfegg/admin-data-source-components";
+import {
+    DeleteButton,
+    FormDrawer,
+    ProColumnType,
+    ProTable,
+    useDataSourceBindSearch,
+} from "@zfegg/admin-data-source-components";
 import {injectServices} from "@moln/react-ioc";
 import {DataSource, Resources} from "@moln/data-source";
 import {EditOutlined} from "@ant-design/icons";
 import {Book} from "../models/book";
-import {Permission} from "@zfegg/admin-admin";
+import {Permission} from "@zfegg/admin-layout";
 
 interface CardProps {
     dataSource: DataSource<Book>,
@@ -68,16 +74,10 @@ class TestProTable extends Component<CardProps> {
             {
                 dataIndex: 'group_id',
                 filterable: true,
-                defaultState: {
-                    show: false,
-                },
             },
             {
                 dataIndex: 'enabled',
                 filterable: true,
-                defaultState: {
-                    show: false,
-                },
             },
             {
                 title: '操作',
@@ -104,13 +104,14 @@ class TestProTable extends Component<CardProps> {
                 },
             }
         ];
+        useDataSourceBindSearch(dataSource)
 
         return (
             <PageContainer extra={[
                 <Button key={"add"} type={"primary"} onClick={() => this.setState({visible: true, itemId: undefined})}>新增</Button>
             ]} >
                 <ProTable
-                    bindRoute
+                    autoFetch={false}
                     defaultSize={'small'}
                     columns={columns}
                     dataSource={dataSource}

@@ -4,7 +4,7 @@ import {RouteObject} from "react-router";
 import {MenuProps} from "antd";
 import {LoaderFunctionArgs} from "react-router-dom";
 import {DependencyContainerInterface} from "@moln/dependency-container";
-import {Router} from "@remix-run/router";
+import type {Router} from "@remix-run/router";
 
 export type HeaderViewProps = Exclude<
     Required<ComponentProps<typeof ProLayout>['rightContentRender']>,
@@ -26,7 +26,7 @@ export interface IConfigProvider {
     })[];
     headerComponents?: (ComponentType<HeaderViewProps> & { index?: number })[];
     // routeWrappers?: Parameters<typeof renderRoutes>[0];
-    redirectLogin?: (router: Router, href?: string) => void;
+    redirectLogin?: (router: Router) => void;
     avatarDropdownProps?: AvatarDropdownProps
     layoutProps?: ComponentProps<typeof ProLayout>
 }

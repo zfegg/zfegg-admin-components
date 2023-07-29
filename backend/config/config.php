@@ -25,12 +25,10 @@ $providers = [
 
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
     \Laminas\Diactoros\ConfigProvider::class,
+    \Laminas\Di\ConfigProvider::class,
 
-    \zfegg\AdminCenterOauthHandler\Mezzio\ConfigProvider::class,
-    \zfegg\CommonLoggerModule\ConfigProvider::class,
-    \zfegg\Admin\Admin\ConfigProvider::class,
-    \zfegg\Admin\BaseProject\ConfigProvider::class,
-    \zfegg\AttachmentHandler\ConfigProvider::class,
+    \Zfegg\Admin\Admin\ConfigProvider::class,
+    \Zfegg\Admin\BaseProject\ConfigProvider::class,
 
     \Zfegg\ApiSerializerExt\ConfigProvider::class,
     \Zfegg\ApiRestfulHandler\ConfigProvider::class,
@@ -38,6 +36,7 @@ $providers = [
     \Zfegg\PsrMvc\ConfigProvider::class,
     \Zfegg\DoctrineHelper\ConfigProvider::class,
     \Zfegg\ContentValidation\ConfigProvider::class,
+    \Zfegg\AttachmentHandler\ConfigProvider::class,
 
     // Default App module config
     \App\ConfigProvider::class,

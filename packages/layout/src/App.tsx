@@ -5,6 +5,7 @@ import {Router} from '@remix-run/router';
 import {App as AntdApp} from 'antd';
 import "./App.css";
 import {PageLoading} from "@ant-design/pro-layout";
+import AxiosInterceptor from "./components/AxiosInterceptor";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const App: FC<Props> = () => {
 
     return (
         <AntdApp>
+            <AxiosInterceptor />
             <Suspense fallback={loading}>
                 <RouterProvider router={router} fallbackElement={loading}/>
             </Suspense>

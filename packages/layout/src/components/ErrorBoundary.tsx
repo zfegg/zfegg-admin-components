@@ -1,25 +1,49 @@
-import React, {Component} from 'react';
-import {Alert} from 'antd';
+import React, {FC} from 'react';
+import {Result} from 'antd';
+import {useRouteError} from "react-router-dom";
+import {ErrorResponse} from '@remix-run/router'
+import {Forbidden, NotFound} from "../pages";
 
-class ErrorBoundary extends Component {
-    state: { error: Error | null } = {
-        error: null,
-    };
+const ErrorBoundary: FC = () => {
+    let error = useRouteError();
+    if (error instanceof ErrorResponse) {
 
-    componentDidCatch(error: Error): void {
-        if (error) {
-            this.setState({error});
+        switch (error.status) {
+        case 403:
+            return <Forbidden />
+        case 404:
+            return <NotFound title={'404 ' + error.statusText} />
+        default:
+            return (
+                <Result
+                    status="error"
+                    title={error.statusText}
+                    extra={error.error + ""}
+                />
+            )  
         }
+    } else if (error instanceof Error) {
+        return (
+            <Result
+                status="error"
+                title={error.message}
+                extra={<pre style={{textAlign: "left", display: "inline-block"}}>{error.stack}</pre>}
+            />
+        );
     }
 
-    render() {
-        const {error} = this.state;
-        if (error) {
-            const msg = error.stack;
-            return <Alert message={error.message} description={msg} type={'error'} showIcon />;
-        }
-        return this.props.children;
+    let message = ""
+    try {
+        message = error + ""
+    } catch (e) {
     }
+    return (
+        <Result
+            status="error"
+            title="Something went wrong."
+            extra={message}
+        />
+    );
 }
 
 export default ErrorBoundary;

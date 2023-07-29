@@ -49,20 +49,20 @@ class Authentication implements AuthenticationInterface
 
     public function unauthorizedResponse(ServerRequestInterface $request): ResponseInterface
     {
-        $urlPrefix = $this->loginUrl
-            . (strpos($this->loginUrl, '?') === false ? '?' : '&')
-            . 'redirect_uri=';
-
         if ($request->getHeaderLine('X-Requested-With') == 'XMLHttpRequest') {
             return new JsonResponse(
                 [
                     'message'   => '认证失败',
-                    'login_url' => $urlPrefix . urlencode($request->getHeaderLine('Referer'))
+                    'login_url' => $this->loginUrl
                 ],
                 401
             );
         } else {
-            return new RedirectResponse($urlPrefix . (string)$request->getUri());
+            $query = ['redirect_uri' => (string)$request->getUri()];
+            $url = $this->loginUrl
+                . (str_contains($this->loginUrl, '?') ? '&' : '?')
+                . http_build_query($query);
+            return new RedirectResponse($url);
         }
     }
 }

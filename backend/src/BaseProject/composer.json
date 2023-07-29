@@ -9,12 +9,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "zfegg\\Admin\\BaseProject\\" : "src"
+            "Zfegg\\Admin\\BaseProject\\" : "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "zfeggTest\\Admin\\BaseProject\\" : "test"
+            "ZfeggTest\\Admin\\BaseProject\\" : "test"
         }
     },
     "require": {
@@ -23,7 +23,7 @@
     },
     "extra": {
         "laminas": {
-            "config-provider": "zfegg\\Admin\\BaseProject\\ConfigProvider"
+            "config-provider": "Zfegg\\Admin\\BaseProject\\ConfigProvider"
         }
     }
 }

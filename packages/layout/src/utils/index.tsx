@@ -4,7 +4,13 @@ import {RouteConfig} from "../interfaces"
 import {MenuDataItem} from "@ant-design/pro-layout";
 
 export function gotoLogin(router: Router) {
-    router.navigate('/login');
+    const location = router.state.location
+    const to = {
+        pathname: '/login',
+        search: 'redirect=' + encodeURIComponent(router.createHref(location).replace(/^#/, ''))
+    }
+    // console.log(router, location, router.createHref(location))
+    router.navigate(to);
 }
 
 export function configMerge(objValue: any, srcValue: any): any | undefined {

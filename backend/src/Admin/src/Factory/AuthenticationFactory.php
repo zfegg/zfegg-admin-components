@@ -16,9 +16,7 @@ class AuthenticationFactory
     {
         return new Authentication(
             $container->get(EntityManagerInterface::class),
-            $container->get(ServerUrlHelper::class)(
-                $container->get(UrlHelper::class)('zfegg.admin-center-auth.login')
-            )
+            $container->get(ServerUrlHelper::class)('/')
         );
     }
 }

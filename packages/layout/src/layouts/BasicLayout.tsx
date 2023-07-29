@@ -56,8 +56,8 @@ const BasicLayout: FC<Props> = (
             layout={'mix'}
             // splitMenus={true}
             // title={''}
-            siderMenuType={"group"}
-            headerTitleRender={(logo) => logo}
+            // siderMenuType={"group"}
+            // headerTitleRender={(logo) => logo}
             actionsRender={(props) => {
                 if (props.isMobile) return [];
                 return actions

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zfegg\Admin\Admin;
 
+use Laminas\Di\Container\AutowireFactory;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use Mezzio\Authentication\AuthenticationInterface;
 use Mezzio\Authentication\AuthenticationMiddleware;
@@ -13,7 +14,7 @@ use Zfegg\Admin\Admin\Entity\User;
 use Zfegg\Admin\Admin\Handler\MenuHandler;
 use Zfegg\Admin\Admin\Handler\UserLoginHandler;
 use Zfegg\Admin\Admin\Middleware\AuthorizationMiddleware;
-use Zfegg\AdminCenterOauthHandler\Mezzio\Handler\ApiSessionLogout;
+use Zfegg\Admin\Admin\Remembering\RememberingMe;
 use Zfegg\AttachmentHandler\AttachmentHandler;
 use Zfegg\ApiResourceDoctrine\Extension\QueryFilter\CamelizeNamingStrategy;
 use Zfegg\ApiRestfulHandler\Utils\Route;
@@ -152,6 +153,7 @@ class ConfigProvider
                 Authentication::class => Factory\AuthenticationFactory::class,
                 Handler\MenuHandler::class => Handler\MenuHandlerFactory::class,
                 Authorization\Gate::class => Factory\GateFactory::class,
+                RememberingMe::class => AutowireFactory::class,
             ],
             'aliases' => [
                 Response\ProblemResponseFactoryInterface::class => Response\ProblemResponseFactory::class,
@@ -226,22 +228,6 @@ class ConfigProvider
 
         return array_merge(
             [
-                [
-                    'path' => '/api/auth/login',
-                    'middleware' => [
-                        SessionMiddleware::class,
-                        UserLoginHandler::class,
-                    ],
-                    'allowed_methods' => ['POST'],
-                ],
-                [
-                    'path' => '/api/auth/logout',
-                    'middleware' => [
-                        SessionMiddleware::class,
-                        ApiSessionLogout::class,
-                    ],
-                    'allowed_methods' => ['GET'],
-                ],
                 [
                     'path' => '/api/attachment/images',
                     'middleware' => [

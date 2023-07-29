@@ -1,13 +1,12 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
 import {lazy} from "react";
 import Ajv from "ajv";
-import {RouteConfigMap, CONFIG_KEY, IConfigProvider} from "@zfegg/admin-application";
+import {RouteConfigMap, CONFIG_KEY, IConfigProvider, Security, Welcome} from "@zfegg/admin-layout";
 import {book} from "./models/book";
 import Help from "./components/Help";
 import DemoButton from "./components/DemoButton";
 import BellButton from "./components/BellButton";
 import Bell2Button from "./components/Bell2Button";
-import {Security, Welcome} from "@zfegg/admin-application";
 
 const ConfigProvider = {
     dependencies: {

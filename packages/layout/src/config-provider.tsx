@@ -1,36 +1,35 @@
-import {
-    DependencyConfigInterface,
-    FactoryFunction,
-    InjectionToken,
-    ServiceMiddleware,
-} from '@moln/dependency-container';
+import {DependencyConfigInterface, FactoryFunction, InjectionToken,} from '@moln/dependency-container';
 import Authentication from './services/Authentication';
 import BasicLayout from './layouts/BasicLayout';
-import RequestErrorMiddleware from './container/RequestErrorMiddleware';
-import {createHashHistory} from 'history';
 import AvatarDropdown from './components/AvatarDropdown';
-import {gotoLogin} from './utils';
 import {CONFIG_KEY} from './constants';
 import {IConfigProvider, RouteConfigMap} from './interfaces';
 import Security from './components/Security';
-import {NotFound, Welcome} from "./pages";
+import {Welcome, Login} from "./pages";
+import {toArrayRouteConfig} from "./utils/internal";
+import ErrorBoundary from "./components/ErrorBoundary";
+import {createHashRouter} from "react-router-dom";
 
 
 const ConfigProvider: Record<any, any> = {
     dependencies: {
         singletonFactories: new Map<InjectionToken, FactoryFunction<any>>([
             [Authentication, (container) => new Authentication(container.get('request'))],
-            ['history', () => createHashHistory()],
-        ]),
-        activationMiddlewares: new Map<InjectionToken, ServiceMiddleware<any>[]>([
-            ['request', [RequestErrorMiddleware]],
+            ['router', (container) => createHashRouter(toArrayRouteConfig(container.get<Record<string, any>>('config')['routes'], container))],
         ]),
     } as DependencyConfigInterface,
     routes: {
+        'login': {
+            "name": "系统管理",
+            "path": "/login",
+            "element": <Login/>,
+            priority: 1000,
+        },
         application: {
             path: '/',
             name: '应用',
             element: <Security><BasicLayout /></Security>,
+            ErrorBoundary: ErrorBoundary,
             children: {
                 home: {
                     name: '首页',
@@ -40,17 +39,9 @@ const ConfigProvider: Record<any, any> = {
                 },
             },
         },
-        '404': {
-            path: '/(.*)',
-            name: '页面不存在!',
-            element: <NotFound />,
-            priority: -10000,
-            hideInMenu: true,
-        },
     } as RouteConfigMap,
     [CONFIG_KEY]: {
         headerRightComponents: [AvatarDropdown],
-        redirectLogin: gotoLogin,
     } as IConfigProvider,
 };
 

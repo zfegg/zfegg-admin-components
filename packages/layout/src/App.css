@@ -1,5 +1,5 @@
 @import url('~antd/dist/reset.css');
 
-#root, body, html {
+#root, body, html, .ant-app {
   height: 100%;
 }

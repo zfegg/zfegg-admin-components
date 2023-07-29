@@ -1,6 +1,7 @@
 import ConfigProvider from './config-provider';
 import App from './App';
 import BasicLayout from './layouts/BasicLayout';
+import AxiosInterceptor from './components/AxiosInterceptor';
 import Security from './components/Security';
 import UserAvatar from './components/UserAvatar';
 import Authorization from './components/Authorization';
@@ -18,6 +19,7 @@ export {
     App,
     Authentication,
     Authorization,
+    AxiosInterceptor,
     Permission,
     Security,
     UserAvatar,

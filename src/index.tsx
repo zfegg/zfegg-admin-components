@@ -1,12 +1,9 @@
-import 'reflect-metadata';
 import container from './container';
 import {App} from '@zfegg/admin-layout';
 import React from "react";
 import ReactDOM from "react-dom";
 import {ConfigProvider} from "antd";
 import {DependencyContainerProvider} from "@moln/react-ioc";
-
-const history = container.get<History>("history")
 
 ReactDOM.render(
     <React.StrictMode>

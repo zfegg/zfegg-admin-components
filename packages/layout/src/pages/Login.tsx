@@ -1,13 +1,10 @@
 import {LockTwoTone, LoginOutlined, UserOutlined,} from '@ant-design/icons';
 import {Alert, Button, Form, Input} from 'antd';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, ReactNode, useEffect, useState} from 'react';
 import styles from './login.module.less';
 import {useService} from "@moln/react-ioc";
-import {DefaultFooter} from "@ant-design/pro-layout";
 import {useLocation, useNavigate} from "react-router";
 import Authentication from "../services/Authentication";
-import {CONFIG_KEY} from "../constants";
-import {IConfigProvider} from "../interfaces";
 
 interface LoginFormProps {
     onSubmit: (values: Record<string, string>) => Promise<void>
@@ -23,7 +20,7 @@ const LoginMessage: FC<{content: string;}> = ({content}) => (
     </Form.Item>
 );
 
-const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
+export const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [errorMsg, setErrorMsg] = useState<string>();
@@ -96,18 +93,8 @@ const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
     );
 };
 
-export interface LoginProps {
-    onSubmit?: LoginFormProps['onSubmit']
-    title?: string
-    desc?: string
-}
-const Login: FC<LoginProps> = (
-    {
-        onSubmit = () => Promise.resolve(),
-        title,
-        desc
-    }
-) => {
+export const useClearClientState = (title: string) => {
+
     const auth = useService(Authentication)
 
     useEffect(() => {
@@ -115,18 +102,31 @@ const Login: FC<LoginProps> = (
         if (auth.user) {
             (async () => {
                 await auth.destroy()
-                window.location.reload()
+                window.location.reload() // Clear client state
             })()
         } else if (auth.user === null) {
             window.location.reload()
         }
     }, [])
+}
+
+export interface LoginProps {
+    onSubmit?: LoginFormProps['onSubmit']
+    title?: string
+    desc?: ReactNode
+}
+const Login: FC<LoginProps> = (
+    {
+        onSubmit = () => Promise.resolve(),
+        title = "管理后台",
+        desc
+    }
+) => {
+
+    useClearClientState(title)
 
     return (
         <div className={styles.container}>
-            <div className={styles.lang}>
-                {/*<SelectLang />*/}
-            </div>
             <div className={styles.content}>
                 <div className={styles.top}>
                     <div className={styles.header}>
@@ -137,7 +137,6 @@ const Login: FC<LoginProps> = (
                 </div>
                 <LoginForm onSubmit={onSubmit} />
             </div>
-            <DefaultFooter copyright={(new Date()).getFullYear() + " zfegg.com"} links={[]} />
         </div>
     );
 };

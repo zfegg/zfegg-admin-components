@@ -15,7 +15,6 @@ declare(strict_types=1);
 use Mezzio\Container;
 use Mezzio\Middleware\ErrorResponseGenerator;
 use Mezzio\Middleware\WhoopsErrorResponseGenerator;
-use Zfegg\ApiRestfulHandler\ErrorResponse\FormatMatcherErrorResponseGenerator;
 
 return [
     'debug' => true,
@@ -33,11 +32,6 @@ return [
             'display'    => true,
             'show_trace' => true,
             'ajax_only'  => true,
-        ],
-    ],
-    FormatMatcherErrorResponseGenerator::class => [
-        'generators' => [
-            'default' => WhoopsErrorResponseGenerator::class,
         ],
     ],
     'doctrine' => [
