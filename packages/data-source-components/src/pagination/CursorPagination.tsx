@@ -1,4 +1,4 @@
-import {Button, Select, Space} from "antd";
+import {Button, Card, Col, Row, Select, Space} from "antd";
 import {ComponentProps} from "react";
 
 interface Props {
@@ -29,16 +29,21 @@ export default ((
     }: Props
 ) => {
     return (
-        <Space className={`ant-pagination ant-table-pagination ant-table-pagination-${position}`} size={size}>
-            <Button disabled={disabledPrev} size={size} onClick={onClickPrev}>&lt; 上一页</Button>
-            <Button disabled={disabledNext} size={size} onClick={onClickNext}>下一页 &gt;</Button>
+        <Row justify={"center"}>
+            <Col style={{padding: 10}}>
+                <Space size={size} >
+                    <Button disabled={disabledPrev} size={size} onClick={onClickPrev}>&lt; 上一页</Button>
+                    <Button disabled={disabledNext} size={size} onClick={onClickNext}>下一页 &gt;</Button>
 
-            {showSizeChanger &&
-            <Select value={pageSize}
-                size={size}
-                onChange={onShowSizeChange}
-                options={pageSizeOptions.map(num => ({label: `${num} 条/页`, value: num}))} />}
+                    {showSizeChanger &&
+                    <Select
+                        value={pageSize}
+                        size={size}
+                        onChange={onShowSizeChange}
+                        options={pageSizeOptions.map(num => ({label: `${num} 条/页`, value: num}))} />}
 
-        </Space>
+                </Space>
+            </Col>
+        </Row>
     )
 })
