@@ -88,6 +88,7 @@ class ConfigProvider
                     'extensions' => [
                         // 接口分页支持
                         'pagination'         => [
+                            'pageSizeRange' => [3, 10, 20],
                         ],
                         // 接口 kendoUI组件 query规则支持
                         'kendo_query_filter' => [

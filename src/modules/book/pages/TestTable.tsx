@@ -2,7 +2,7 @@ import React, {Component, useMemo} from "react";
 import {PageContainer} from "@ant-design/pro-layout";
 import {Button, Space} from "antd";
 import {
-    ColumnType,
+    ColumnType, DeleteButton,
     FormDrawer,
     Table,
 } from "@zfegg/admin-data-source-components";
@@ -140,10 +140,7 @@ class TestTable extends Component<CardProps> {
                                 type={"primary"}
                                 icon={<EditOutlined />}
                             />
-                            <Button size={"small"}
-                                onClick={() => this.handleRemove(row)}
-                                danger
-                                icon={<DeleteOutlined />} />
+                            <DeleteButton size={"small"} dataSource={dataSource} item={row} />
                         </Space>
                     )
                 },
@@ -155,7 +152,6 @@ class TestTable extends Component<CardProps> {
                 <Button key={"add"} type={"primary"} onClick={() => this.setState({visible: true, itemId: undefined})}>新增</Button>
             ]} >
                 <Table
-                    // bindRoute
                     size={"small"}
                     columns={columns}
                     dataSource={dataSource}

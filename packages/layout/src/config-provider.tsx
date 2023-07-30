@@ -41,7 +41,7 @@ const ConfigProvider: Record<any, any> = {
         },
     } as RouteConfigMap,
     [CONFIG_KEY]: {
-        headerRightComponents: [AvatarDropdown],
+        // headerRightComponents: [AvatarDropdown],
     } as IConfigProvider,
 };
 

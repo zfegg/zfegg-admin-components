@@ -80,7 +80,6 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
 
     trySet('filter', (value) => {
         const oldVal = JSON.stringify(fromDataSourceFilterToFilterValues(dataSource.filter))
-        console.log(value , '===', oldVal)
         if (value === oldVal) {
             return ;
         }
