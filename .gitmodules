@@ -1,6 +1,6 @@
 [submodule "backend/src/Admin"]
 	path = backend/src/Admin
-	url = ../zfegg-admin-admin.git
+	url = git@github.com:zfegg/admin-admin.git
 [submodule "backend/src/BaseProject"]
 	path = backend/src/BaseProject
 	url = ../zfegg-admin-base-project.git
