@@ -166,7 +166,7 @@ const GroupList: FC = () => {
                         setItemId(row.id)
                         setVisible(true)
                     }} >编辑</Button>
-                    <DeleteButton size={"small"} dataSource={dataSource} value={row.id} />
+                    <DeleteButton size={"small"} dataSource={dataSource} item={row} />
                 </Space>
             )
         }
@@ -252,7 +252,7 @@ const MemberList: FC = () => {
             width: 200,
             render: (_, row) => (
                 <Space>
-                    <DeleteButton size={"small"} dataSource={dataSource} value={row.id} />
+                    <DeleteButton size={"small"} dataSource={dataSource} item={row} />
                 </Space>
             )
         }

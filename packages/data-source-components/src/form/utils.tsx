@@ -118,14 +118,14 @@ export function schemaToFormItem(parentSchema: JSONSchema7, key: string, uiProps
             switch (type) {
             case "number":
             case "integer":
-                component = <InputNumber min={schema.minimum} max={schema.maximum} {...uiProps} />
+                component = <InputNumber min={schema.minimum} max={schema.maximum} placeholder={uiProps.placeholder} {...uiProps.props} />
                 break;
             case "boolean":
                 formItemProps['valuePropName'] = 'checked'
                 component = <Switch />
                 break;
             case "string":
-                component = <Input maxLength={schema.maxLength} {...uiProps} />
+                component = <Input maxLength={schema.maxLength} placeholder={uiProps.placeholder} {...uiProps.props} />
                 break;
             }
         }

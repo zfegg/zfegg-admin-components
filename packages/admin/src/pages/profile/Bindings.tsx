@@ -18,6 +18,7 @@ const Bindings = () => {
         })();
     }, []);
 
+    const ds = Object.entries({} as Record<string, any>).map(([key, name]) => ({key, name}))
 
     return (
         <PageContainer loading={!user}>
@@ -25,7 +26,7 @@ const Bindings = () => {
                 <ProCard>
                     <List
                         bordered
-                        dataSource={Object.entries({}).map(([key, name]) => ({key, name}))}
+                        dataSource={ds}
                         renderItem={({key, name}) => {
                             const binding = user.bindings.find(item => item.provider === key)
                             if (! binding) {

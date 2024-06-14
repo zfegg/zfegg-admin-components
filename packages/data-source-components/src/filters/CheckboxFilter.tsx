@@ -2,7 +2,7 @@ import React, {ComponentProps, FC} from "react";
 import {Checkbox, Space} from "antd";
 import {FilterValue} from "./interfaces";
 
-interface Props extends Omit<ComponentProps<typeof Checkbox.Group>, 'value' | 'onChange'> {
+interface Props extends Omit<ComponentProps<typeof Checkbox.Group<any>>, 'value' | 'onChange'> {
     value?: FilterValue,
     onChange?: (value: FilterValue) => void,
 }

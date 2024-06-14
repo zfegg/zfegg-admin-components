@@ -29,7 +29,7 @@ const ConfigProvider: Record<any, any> = {
             path: '/',
             name: '应用',
             element: <Security><BasicLayout /></Security>,
-            ErrorBoundary: ErrorBoundary,
+            ErrorBoundary,
             children: {
                 home: {
                     name: '首页',

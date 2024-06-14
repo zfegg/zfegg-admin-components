@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-layout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -10,7 +10,6 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^7.16.1",
     "@moln/dependency-container": "^1.0.6",
     "@moln/react-ioc": "^0.1.2",
     "js-cookie": "*",
@@ -19,7 +18,8 @@
   "peerDependencies": {
     "ajv": "^8.6.0",
     "antd": "^5.0.0",
-    "react": ">=16"
+    "react": ">=16",
+    "@ant-design/pro-layout": ">=7.16.1"
   },
   "source": "src/index.ts",
   "module": "dist/es/index.js",

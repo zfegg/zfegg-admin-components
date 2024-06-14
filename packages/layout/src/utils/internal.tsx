@@ -3,14 +3,16 @@ import {RouteObject} from "react-router";
 import {DependencyContainerInterface} from "@moln/dependency-container";
 import {LoaderFunction} from "react-router-dom";
 
-const lazyWrapper = (lazy: Required<RouteObject>['lazy'], container: DependencyContainerInterface) => {
-    return async () => {
+type LazyFn = Required<RouteObject>['lazy']
+const lazyWrapper = (lazy: LazyFn, container: DependencyContainerInterface): LazyFn => {
+    return (async () => {
         const result = await lazy()
         let loader: LoaderFunction | undefined
-        if (result.loader) {
+        let tmpLoader = result.loader
+        if (typeof tmpLoader == "function") {
             loader = (props) => {
                 props.context = container
-                return result.loader!(props)
+                return tmpLoader(props)
             }
         }
 
@@ -18,7 +20,7 @@ const lazyWrapper = (lazy: Required<RouteObject>['lazy'], container: DependencyC
             ...result,
             loader,
         }
-    }
+    }) as LazyFn
 }
 
 export function toArrayRouteConfig(routes: RouteConfigMap, container: DependencyContainerInterface, parentName: string = ''): RouteConfig[] {

@@ -111,8 +111,9 @@ const RolePermissions: FC<{role: IModelT<IRole>, roles: IDataSource<IRole>}> = o
             headerBordered
             extra={(
                 <Space>
-                    <Button key={'reset'} icon={<SaveOutlined />}
-                        type={'ghost'}
+                    <Button key={'reset'}
+                        icon={<SaveOutlined />}
+                        ghost
                         disabled={! role.isPropertyDirty('menus')}
                         onClick={() => {
                             role.resetProperty('menus');

@@ -10,7 +10,6 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@ant-design/pro-table": "^3.9.1",
     "@moln/data-source": "^0.4.1",
     "lodash": "*",
     "mobx": "^6.3.2",
@@ -18,6 +17,7 @@
     "react-router-dom": "^6.10.0"
   },
   "peerDependencies": {
+    "@ant-design/pro-table": ">=3.9.1",
     "antd": "^5.0.0",
     "react": ">=17"
   },

@@ -12,6 +12,7 @@ export type UiProps = {
     span?: number,
     enumOptions?: SelectProps['options'],
     component?: ReactNode
+    props?: Record<string, any>
     [key: string] : any
 }
 

@@ -50,7 +50,7 @@ const UsersTransfer: FC<Props> = observer((
                           (item.email && item.email.indexOf(inputValue) >= 0) as boolean
             }}
             onChange={(selectedKeys) => {
-                const value = selectedKeys.map((id) => valueObj ? users.get(parseInt(id))! : parseInt(id));
+                const value = selectedKeys.map((id) => valueObj ? users.get(Number(id))! : Number(id));
                 onChange && onChange(value)
             }}
             {...props}

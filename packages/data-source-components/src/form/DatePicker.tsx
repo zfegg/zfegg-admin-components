@@ -8,14 +8,14 @@ import {DatePickerProps as AntdDatePickerProps} from "antd";
 
 type OmitValueProps<C> = Omit<C, 'value' | 'onChange' | 'picker'>
 // type AntdDatePickerProps = ComponentProps<typeof AntdDatePicker>
-type DatePickerProps1 = Extract<AntdDatePickerProps, {showTime?: any}>
+// type DatePickerProps1 = Extract<AntdDatePickerProps, {showTime?: any}>
 
-interface DatePickerProps extends OmitValueProps<AntdDatePickerProps> {
-    value?: string | null
-    onChange?: (value: string | null) => void
-    valueFormat?: string
-    picker?: string
-}
+// interface DatePickerProps extends OmitValueProps<AntdDatePickerProps> {
+//     value?: string | null
+//     onChange?: (value: string | null) => void
+//     valueFormat?: string
+//     picker?: string
+// }
 
 interface DatePickerProps extends OmitValueProps<ComponentProps<typeof AntdDatePicker>> {
     value?: string | null

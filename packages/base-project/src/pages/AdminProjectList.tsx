@@ -67,7 +67,7 @@ const AdminProjectList: FC = () => {
                             type={"primary"}
                             icon={<EditOutlined />}
                         />
-                        <DeleteButton size={"small"} dataSource={dataSource} value={row.id} />
+                        <DeleteButton size={"small"} dataSource={dataSource} item={row} />
                     </Space>
                 )
             },

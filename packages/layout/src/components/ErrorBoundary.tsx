@@ -1,12 +1,11 @@
 import React, {FC} from 'react';
 import {Result} from 'antd';
-import {useRouteError} from "react-router-dom";
-import {ErrorResponse} from '@remix-run/router'
+import {useRouteError, isRouteErrorResponse} from "react-router-dom";
 import {Forbidden, NotFound} from "../pages";
 
 const ErrorBoundary: FC = () => {
     let error = useRouteError();
-    if (error instanceof ErrorResponse) {
+    if (isRouteErrorResponse(error)) {
 
         switch (error.status) {
         case 403:
@@ -18,7 +17,7 @@ const ErrorBoundary: FC = () => {
                 <Result
                     status="error"
                     title={error.statusText}
-                    extra={error.error + ""}
+                    extra={error.data + ""}
                 />
             )  
         }
