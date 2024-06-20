@@ -1,12 +1,13 @@
 {
   "name": "@zfegg/admin-admin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
     "build": "vite build && tsc",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@moln/data-source": "^0.4.5",

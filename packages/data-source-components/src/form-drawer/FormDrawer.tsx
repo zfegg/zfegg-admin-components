@@ -136,7 +136,7 @@ export const FormDrawer = <T extends Record<string, any> = Record<string, any>>(
             width={720}
             onClose={() => onCloseProp()}
             open={visible}
-            bodyStyle={{paddingBottom: 80}}
+            styles={{body: {paddingBottom: 80}}}
             footer={
                 <Space>
                     <Observer>{() => (
