@@ -44,7 +44,7 @@ export function schemaToFormItem(parentSchema: JSONSchema7, key: string, uiProps
     const required = Boolean(parentSchema?.required && parentSchema.required.indexOf(key) > -1);
 
     if (uiProps.render) {
-        return uiProps.render(name, schema, schemaToFormRules(schema, required))
+        return uiProps.render({name, label: schema.title || key, rules: schemaToFormRules(schema, required)}, schema, )
     }
 
     let type = validType(schema)

@@ -7,7 +7,7 @@ export type Rules = Exclude<ComponentProps<typeof Form.Item>['rules'], undefined
 
 export type UiProps = {
     children?: UiPropsSets,
-    render?: (name: string[], item: JSONSchema7, rules: Rules) => ReactNode,
+    render?: (formItemProps: {name: string[], rules: Rules, label: string}, item: JSONSchema7) => ReactNode,
     placeholder?: string,
     span?: number,
     enumOptions?: SelectProps['options'],
