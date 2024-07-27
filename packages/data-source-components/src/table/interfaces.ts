@@ -1,5 +1,5 @@
 import {TableColumnType as AntdColumnType} from "antd";
-import {ProColumnType as AntdProColumnType, ColumnsState} from "@ant-design/pro-table";
+import {ColumnsState, ProColumnType as AntdProColumnType} from "@ant-design/pro-table";
 import {OperatorKeys} from "@moln/data-source";
 import {FilterElement} from "../filters/interfaces";
 

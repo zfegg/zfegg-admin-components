@@ -1,13 +1,13 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken} from "@moln/dependency-container";
 import {lazy} from "react";
 import {
-    RouteConfigMap,
+    Authorization,
+    BasicLayout,
     CONFIG_KEY,
     IConfigProvider as ApplicationIConfigProvider,
-    BasicLayout,
+    RouteConfigMap,
     Security,
-    Welcome,
-    Authorization
+    Welcome
 } from "@zfegg/admin-layout";
 import HeadRightAdmin from "./components/HeadRightAdmin";
 import Ajv from "ajv";
@@ -17,7 +17,6 @@ import {SettingOutlined} from "@ant-design/icons";
 import ProfileService from "./services/ProfileService";
 import Login from "./pages/Login";
 import {IConfigProvider} from "./interfaces";
-import {Router} from "@remix-run/router";
 
 const ConfigProvider = {
     dependencies: {

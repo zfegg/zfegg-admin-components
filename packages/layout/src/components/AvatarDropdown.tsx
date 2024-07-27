@@ -1,5 +1,5 @@
 import {LogoutOutlined} from '@ant-design/icons';
-import {Avatar, Dropdown, Menu} from 'antd';
+import {Avatar, Dropdown} from 'antd';
 import React, {FC, PropsWithChildren, useMemo} from 'react';
 import {useService} from '@moln/react-ioc';
 import Authentication from '../services/Authentication';

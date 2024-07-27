@@ -1,6 +1,7 @@
 import {defineConfig, mergeConfig, UserConfig} from "vite";
 import {libBaseConfig, safeName} from "../../scripts/vite.utils";
 import * as fsExtra from "fs-extra";
+
 const path = require("path");
 const packageJson = require("./package.json");
 

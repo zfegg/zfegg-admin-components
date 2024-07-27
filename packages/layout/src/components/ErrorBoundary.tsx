@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Result} from 'antd';
-import {useRouteError, isRouteErrorResponse} from "react-router-dom";
+import {isRouteErrorResponse, useRouteError} from "react-router-dom";
 import {Forbidden, NotFound} from "../pages";
 
 const ErrorBoundary: FC = () => {

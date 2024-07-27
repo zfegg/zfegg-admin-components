@@ -1,11 +1,10 @@
 import {DependencyConfigInterface, FactoryFunction, InjectionToken,} from '@moln/dependency-container';
 import Authentication from './services/Authentication';
 import BasicLayout from './layouts/BasicLayout';
-import AvatarDropdown from './components/AvatarDropdown';
 import {CONFIG_KEY} from './constants';
 import {IConfigProvider, RouteConfigMap} from './interfaces';
 import Security from './components/Security';
-import {Welcome, Login} from "./pages";
+import {Login, Welcome} from "./pages";
 import {toArrayRouteConfig} from "./utils/internal";
 import ErrorBoundary from "./components/ErrorBoundary";
 import {createHashRouter} from "react-router-dom";

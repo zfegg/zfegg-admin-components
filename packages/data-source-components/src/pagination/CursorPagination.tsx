@@ -1,4 +1,4 @@
-import {Button, Card, Col, Row, Select, Space} from "antd";
+import {Button, Col, Row, Select, Space} from "antd";
 import {ComponentProps} from "react";
 
 interface Props {

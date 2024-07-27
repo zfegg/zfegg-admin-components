@@ -3,8 +3,6 @@ import {DatePicker as AntdDatePicker, TimePicker as AntdTimePicker} from "antd";
 import {DEFAULT_DATETIME_FORMAT, DEFAULT_TIME_FORMAT} from "../constants";
 import dayjs from "dayjs";
 
-import {DatePickerProps as AntdDatePickerProps} from "antd";
-
 
 type OmitValueProps<C> = Omit<C, 'value' | 'onChange' | 'picker'>
 // type AntdDatePickerProps = ComponentProps<typeof AntdDatePicker>

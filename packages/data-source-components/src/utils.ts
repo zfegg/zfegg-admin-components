@@ -1,8 +1,6 @@
 import {JSONSchema7} from "json-schema";
 import isArray from "lodash/isArray";
-import {useContext, useMemo} from "react";
-import {UNSAFE_NavigationContext} from "react-router";
-import type {History} from "history";
+import {useMemo} from "react";
 import {useService} from "@moln/react-ioc";
 import {OptionsArg, Resources} from "@moln/data-source";
 

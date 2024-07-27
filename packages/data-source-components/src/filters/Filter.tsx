@@ -1,9 +1,7 @@
-import {ComponentProps, FC, PropsWithChildren, ReactElement, cloneElement, ChangeEvent} from "react";
+import {cloneElement, FC, ReactElement} from "react";
 import {OperatorKeys} from "@moln/data-source";
-import {DatePicker, Input, Select} from "antd";
 import {normalizeOperators} from "./utils";
 import {FilterValue} from "./interfaces";
-import dayjs from "dayjs";
 
 type Props = {
     operators?: OperatorKeys[] | { [key in OperatorKeys]: string },

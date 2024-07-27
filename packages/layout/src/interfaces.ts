@@ -1,5 +1,5 @@
 import type {ComponentProps, ComponentType} from 'react';
-import type {ProLayout, MenuDataItem} from '@ant-design/pro-layout';
+import type {MenuDataItem, ProLayout} from '@ant-design/pro-layout';
 import {RouteObject} from "react-router";
 import {MenuProps} from "antd";
 import {LoaderFunctionArgs} from "react-router-dom";

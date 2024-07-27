@@ -4,7 +4,12 @@ import {IDataSource} from "@moln/data-source";
 import isEmpty from "lodash/isEmpty";
 import {useEffect} from "react";
 import isArray from "lodash/isArray";
-import {filterEmpty, fromDataSourceFilterToFilterValues, fromFilterValuesToDSFilters, isEmptyValue} from "./internal/utils";
+import {
+    filterEmpty,
+    fromDataSourceFilterToFilterValues,
+    fromFilterValuesToDSFilters,
+    isEmptyValue
+} from "./internal/utils";
 import {observe, toJS} from "mobx";
 
 const jsonParse = JSON.parse;

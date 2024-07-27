@@ -1,11 +1,10 @@
-import {ComponentProps, FC, ReactNode, useEffect, useMemo} from "react";
+import React, {ComponentProps, FC, ReactNode, useEffect, useMemo} from "react";
 import {Select, Spin} from "antd";
 import {IRole} from "../interfaces";
 import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
 import {Observer} from "mobx-react-lite";
 import debounce from "lodash/debounce";
-import React from "react";
 
 const {Option} = Select;
 const isArray = Array.isArray;
