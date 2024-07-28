@@ -38,7 +38,6 @@ const BasicLayout: FC<Props> = (
         const route = getter(routes, matches[0].id.split("-").map(Number))!
         return withoutRouteElementKey(route)
     }, [matches])
-    // console.log(router.routes, layoutRoute, data)
 
     headerRightComponents = headerRightComponents || appConfig.headerRightComponents || [];
     headerComponents = headerComponents || appConfig.headerComponents || [];
@@ -90,19 +89,18 @@ const BasicLayout: FC<Props> = (
             avatarProps={{
                 render: () => <AvatarDropdown/>,
             }}
-            menu={{
-                request: async (params, menus) => {
-                    if (user.admin) {
-                        return menus;
-                    }
-                    return filterMenus(menus, user.menus)
+            menuDataRender={(menus) => {
+                if (user.admin) {
+                    return menus;
                 }
+                return filterMenus(menus, user.menus)
             }}
+            // loading
             {...layoutProps}
             {...props}
             {...(data?.layoutProps || {})}
         >
-            <Suspense fallback={<PageLoading tip={'加载中...'}/>}>
+            <Suspense fallback={<PageLoading />}>
                 {children || <Outlet/>}
             </Suspense>
         </ProLayout>

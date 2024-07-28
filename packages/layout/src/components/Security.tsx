@@ -27,7 +27,7 @@ const Security: FC<SecurityProps> = ({children}) => {
     }, []);
 
     if (!isReady) {
-        return <PageLoading tip={'检测认证'} />;
+        return <PageLoading />;
     }
 
     return children as React.ReactElement;

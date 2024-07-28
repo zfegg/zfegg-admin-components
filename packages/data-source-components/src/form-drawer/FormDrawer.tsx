@@ -121,8 +121,6 @@ export const FormDrawer = <T extends Record<string, any> = Record<string, any>>(
         }
     }
 
-    console.log(item)
-
     useEffect(() => {
         if (visible) {
             wrapForm.resetFields();
