@@ -5,14 +5,12 @@
   "version": "0.1.0",
   "scripts": {
     "start": "vite --port 4000",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
     "dedup": "yarn-deduplicate --strategy fewer",
     "lint": "eslint ./src ./packages/admin/src packages/layout/src ./packages/data-source-components/src ./packages/base-project/src",
     "lint:fix": "eslint ./src ./packages/admin/src packages/layout/src ./packages/data-source-components/src ./packages/base-project/src --fix"
   },
   "dependencies": {
-    "@ant-design/pro-components": "^2.3.25",
+    "@ant-design/pro-components": "^2.7.14",
     "@moln/data-source": "^0.4.5",
     "@moln/react-ioc": "^0.1.2",
     "ajv": "^8.11.0",

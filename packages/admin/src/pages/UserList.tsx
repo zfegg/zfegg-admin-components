@@ -105,11 +105,11 @@ const UserForm: FC<ComponentProps<typeof FormDrawer> & {fields: string[]}> = (pr
             }}
             uiProps={{
                 email: {
-                    render: (name, schema, rules) => (
+                    render: (props) => (
                         <Form.Item
-                            name={name}
+                            {...props}
                             rules={[
-                                ...rules,
+                                ...props.rules,
                                 {type: "email"},
                                 {validator: async (_, value) => {
                                     if (! value) {
@@ -128,41 +128,19 @@ const UserForm: FC<ComponentProps<typeof FormDrawer> & {fields: string[]}> = (pr
                                 }}
                             ]}
                             normalize={(value) => value ? value : null}
-                            label={schema.title || name}
                         >
                             <Input type={"email"} />
                         </Form.Item>
                     )
                 },
                 password: {
-                    render: (name, schema, rules) => (
-                        <Form.Item name={name}
-                            rules={rules}
-                            label={schema.title || name}
-                        >
-                            <Input.Password/>
-                        </Form.Item>
-                    )
+                    component: <Input.Password/>,
                 },
                 status: {
-                    render: (name, schema, rules) => (
-                        <Form.Item name={name}
-                            rules={rules}
-                            label={schema.title || name}
-                        >
-                            <Select options={valueEnumToOptions(STATUS_TEXT)}/>
-                        </Form.Item>
-                    )
+                    component: <Select options={valueEnumToOptions(STATUS_TEXT)}/>,
                 },
                 roles: {
-                    render: (name, schema, rules) => (
-                        <Form.Item name={name}
-                            rules={rules}
-                            label={schema.title || name}
-                        >
-                            <RoleSelect />
-                        </Form.Item>
-                    )
+                    component: <RoleSelect />,
                 }
             }}
         />

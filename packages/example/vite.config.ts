@@ -1,9 +1,7 @@
-import {defineConfig, mergeConfig, UserConfig} from 'vite'
-import {baseConfig} from "./scripts/vite.utils";
+import {defineConfig, mergeConfig, UserConfig} from "vite";
+import {baseConfig} from "../../scripts/vite.utils";
+import {resolve} from "path";
 
-import {resolve} from 'path';
-
-// https://vitejs.dev/config/
 export default defineConfig(() => {
     const config = mergeConfig(baseConfig, {
         optimizeDeps: {

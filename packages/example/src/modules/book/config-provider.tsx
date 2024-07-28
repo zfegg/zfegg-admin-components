@@ -25,13 +25,6 @@ const ConfigProvider = {
         ])
     } as DependencyConfigInterface,
     routes: {
-        'welcome': {
-            name: "首页",
-            path: "/",
-            element: <Security><Welcome /></Security>,
-            index: true,
-            priority: 100,
-        },
         'application': {
             // component:
             children: {

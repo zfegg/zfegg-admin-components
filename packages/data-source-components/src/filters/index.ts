@@ -5,6 +5,7 @@ import RadioFilter from "./RadioFilter";
 import SelectFilter from "./SelectFilter";
 import TextFilter from "./TextFilter";
 import DigitFilter from "./DigitFilter";
+import Filter from "./Filter";
 
 export {
     CheckboxFilter,
@@ -14,4 +15,5 @@ export {
     SelectFilter,
     TextFilter,
     DigitFilter,
+    Filter,
 }

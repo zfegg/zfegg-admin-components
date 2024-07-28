@@ -5,6 +5,7 @@ import {Forbidden, NotFound} from "../pages";
 
 const ErrorBoundary: FC = () => {
     let error = useRouteError();
+    console.error(error)
     if (isRouteErrorResponse(error)) {
 
         switch (error.status) {

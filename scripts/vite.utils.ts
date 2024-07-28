@@ -1,11 +1,12 @@
-import {mergeConfig, Plugin, UserConfig, UserConfigFn} from "vite";
+import {mergeConfig, UserConfig, UserConfigFn} from "vite";
 import react from "@vitejs/plugin-react";
 import eslint from "vite-plugin-eslint";
-import path from "path";
+import path, {resolve} from "path";
 import {ModuleFormat, OutputOptions} from "rollup";
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
-import babelImportPlugin from "./babelImportPlugin";
-import svgr from "@svgr/rollup";
+// import babelImportPlugin from "./babelImportPlugin";
+// import svgr from "@svgr/rollup";
+import svgr from "vite-plugin-svgr";
 import {theme} from "antd";
 import {convertLegacyToken} from "@ant-design/compatible";
 
@@ -16,7 +17,6 @@ const v4Token = convertLegacyToken(mapToken);
 
 
 const postCssUrl = require("postcss-url");
-const {DEFAULT_EXTENSIONS} = require("@babel/core");
 const sourcePath = path.resolve(process.cwd(), "./src").replace(/\\/g, "/");
 const outputPath = (orgPath: string | null) => {
     if (!orgPath) return "";
@@ -57,30 +57,27 @@ export const safeName = (name: string) => {
 
 const eslintFile = path.resolve(__dirname, "../.eslintrc.js");
 
-const viteBabelImport: Plugin = {
-    ...babelImportPlugin({
-        exclude: 'node_modules/**',
-        babelHelpers: 'bundled',
-        extensions: [...DEFAULT_EXTENSIONS, '.ts', '.tsx']
-    }),
-    apply: () => true,
-}
+const alias = [
+    // {find: '@zfegg/admin-admin/src', replacement: resolve(__dirname, './packages/admin/src')},
+    {find: '@zfegg/admin-admin', replacement: resolve(__dirname, '../packages/admin/src')},
+    // {find: '@zfegg/admin-layout/src', replacement: resolve(__dirname, './packages/layout/src'),},
+    {find: '@zfegg/admin-layout', replacement: resolve(__dirname, '../packages/layout/src'),},
+    // {find: '@zfegg/admin-data-source-components/src', replacement: resolve(__dirname, './packages/data-source-components/src'),},
+    {find: '@zfegg/admin-data-source-components', replacement: resolve(__dirname, '../packages/data-source-components/src'),},
+    // {find: '@zfegg/admin-base-project/src', replacement: resolve(__dirname, './packages/base-project/src'),},
+    {find: '@zfegg/admin-base-project', replacement: resolve(__dirname, '../packages/base-project/src'),},
+];
 
 export const baseConfig = {
     plugins: [
         react(),
         eslint({include: [eslintFile]}),
-        {
-            ...svgr({
-                ref: true,
-                memo: true,
-            }),
-            apply: () => true
-        }
+        svgr({include: '**/*.svg'}),
     ],
     resolve: {
         alias: [
             {find: /^~/, replacement: ""},
+            ...alias,
         ],
     },
     css: {
@@ -126,13 +123,14 @@ export const libBaseConfig = ((env) => {
             },
         },
         resolve: {
-            alias: [
-                {
-                    find: /^~@zfegg/,
-                    replacement: '~@zfegg',
-                    customResolver: () => null,
-                },
-            ],
+            // alias: [
+            //     {
+            //         find: /^~@zfegg/,
+            //         replacement: '~@zfegg',
+            //         customResolver: () => null,
+            //     },
+            // ],
+            alias,
         },
         css: {
             postcss: {

@@ -16,7 +16,6 @@ class PingHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        throw new AccessDeniedHttpException("sdfsd");
         return new JsonResponse(['ack' => time()]);
     }
 }

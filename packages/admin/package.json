@@ -13,7 +13,7 @@
     "@moln/data-source": "^0.4.5",
     "@moln/react-ioc": "^0.1.2",
     "@zfegg/admin-layout": "^0.1.0",
-    "@zfegg/admin-data-source-components": "^0.1.0",
+    "@zfegg/admin-data-source-components": "^0.2.1",
     "ahooks": "^3.1.2",
     "lodash": "*",
     "mobx": "^6.3.2",
@@ -27,6 +27,7 @@
   "module": "dist/es/index.js",
   "main": "dist/cjs/index.js",
   "types": "types/index.d.ts",
+  "typings": "types/index.d.ts",
   "files": [
     "dist",
     "types",

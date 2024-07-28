@@ -2,7 +2,7 @@ import {Link, useMatches} from "react-router-dom";
 import Icon from "@ant-design/icons";
 import {Tooltip} from "antd";
 import {FC} from "react";
-import {ReactComponent as IconAdmin} from '../assets/icon-admin.svg';
+import IconAdmin from '../assets/icon-admin.svg';
 import {useService} from "@moln/react-ioc";
 import {Authentication} from "@zfegg/admin-layout";
 

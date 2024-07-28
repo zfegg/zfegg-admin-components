@@ -48,7 +48,6 @@ const BasicLayout: FC<Props> = (
         .sort((a, b) => (a.index || 0) - (b.index || 0))
         .map((component, idx) => createElement(component, {key: 'key-' + idx, ...props}))
 
-    // console.log(layoutRoute.children?.[1].children?.[1])
     return (
         <ProLayout
             location={location}

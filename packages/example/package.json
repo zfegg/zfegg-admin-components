@@ -1,0 +1,15 @@
+{
+  "name": "@zfegg/admin-components",
+  "license": "MIT",
+  "author": "Moln <moln.xie@gmail.com>",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "vite --port 4000",
+    "lint": "eslint ./src ",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
