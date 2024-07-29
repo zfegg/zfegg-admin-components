@@ -94,8 +94,8 @@ const AdminProjectList: FC = () => {
                 uiProps: {
                     description: {
                         span: 24,
-                        render: (name, item, rules) => (
-                            <Form.Item name={name} label={item.title} rules={rules}>
+                        render: (props) => (
+                            <Form.Item {...props}>
                                 <Input.TextArea />
                             </Form.Item>
                         )

@@ -188,7 +188,7 @@ const GroupList: FC = () => {
                 uiProps: {
                     members: {
                         span: 24,
-                        render: (name) => (
+                        render: ({name}) => (
                             <Form.Item name={name} label={'成员'} rules={[{required: true}]}>
                                 <ProjectMemberSelect mode={"multiple"} />
                             </Form.Item>

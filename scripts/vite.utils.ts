@@ -57,17 +57,6 @@ export const safeName = (name: string) => {
 
 const eslintFile = path.resolve(__dirname, "../.eslintrc.js");
 
-const alias = [
-    // {find: '@zfegg/admin-admin/src', replacement: resolve(__dirname, './packages/admin/src')},
-    {find: '@zfegg/admin-admin', replacement: resolve(__dirname, '../packages/admin/src')},
-    // {find: '@zfegg/admin-layout/src', replacement: resolve(__dirname, './packages/layout/src'),},
-    {find: '@zfegg/admin-layout', replacement: resolve(__dirname, '../packages/layout/src'),},
-    // {find: '@zfegg/admin-data-source-components/src', replacement: resolve(__dirname, './packages/data-source-components/src'),},
-    {find: '@zfegg/admin-data-source-components', replacement: resolve(__dirname, '../packages/data-source-components/src'),},
-    // {find: '@zfegg/admin-base-project/src', replacement: resolve(__dirname, './packages/base-project/src'),},
-    {find: '@zfegg/admin-base-project', replacement: resolve(__dirname, '../packages/base-project/src'),},
-];
-
 export const baseConfig = {
     plugins: [
         react(),
@@ -77,7 +66,7 @@ export const baseConfig = {
     resolve: {
         alias: [
             {find: /^~/, replacement: ""},
-            ...alias,
+            // ...alias,
         ],
     },
     css: {
@@ -123,14 +112,14 @@ export const libBaseConfig = ((env) => {
             },
         },
         resolve: {
-            // alias: [
-            //     {
-            //         find: /^~@zfegg/,
-            //         replacement: '~@zfegg',
-            //         customResolver: () => null,
-            //     },
-            // ],
-            alias,
+            alias: [
+                {
+                    find: /^~@zfegg/,
+                    replacement: '~@zfegg',
+                    customResolver: () => null,
+                },
+            ],
+            // alias,
         },
         css: {
             postcss: {

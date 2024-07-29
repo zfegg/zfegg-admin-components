@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-admin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -27,7 +27,6 @@
   "module": "dist/es/index.js",
   "main": "dist/cjs/index.js",
   "types": "types/index.d.ts",
-  "typings": "types/index.d.ts",
   "files": [
     "dist",
     "types",
