@@ -2,7 +2,7 @@ import {JSONSchema7} from "json-schema";
 import isArray from "lodash/isArray";
 import {useMemo} from "react";
 import {useService} from "@moln/react-ioc";
-import {OptionsArg, Resources} from "@moln/data-source";
+import {OptionsArg, Resources, IDataSource} from "@moln/data-source";
 
 export enum Editor {
     Create,
@@ -110,7 +110,7 @@ export function toTreeData<
     return data;
 }
 
-export function useDataSource<T extends Record<string, any>>(path: string, params?: Record<string, string | number>, options?: OptionsArg<T>) {
+export function useDataSource<T extends Record<string, any>>(path: string, params?: Record<string, string | number>, options?: OptionsArg<T>): IDataSource<T> {
     const resources = useService(Resources)
     return useMemo(() => resources.create<T>(path, params).createDataSource(options), [path, JSON.stringify(params)])
 }
