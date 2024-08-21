@@ -11,7 +11,8 @@ const CheckboxFilter: FC<Props> = ({options, value, onChange, ...props}) => {
     const operator = 'in';
     value = value || {[operator]: null} as FilterValue
 
-    const [, val] = Object.entries(value)[0]
+    let [, val] = Object.entries(value)[0]
+    val = val && ! Array.isArray(val) ? [val] : val;
 
     return (
         <Checkbox.Group onChange={(e) => onChange?.({[operator]: e} as FilterValue)}

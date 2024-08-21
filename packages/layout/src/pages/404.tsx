@@ -1,18 +1,17 @@
 import {Button, Result} from 'antd';
-import {useService} from '@moln/react-ioc';
-import {History} from '@remix-run/router';
-import React from 'react';
+import {FC} from 'react';
+import {useNavigate} from "react-router";
 
-const NotFound: React.FC<{title?: string}> = ({title}) => {
-    const history = useService<History>('history');
+const NotFound: FC<{title?: string}> = ({title}) => {
+    const navigate = useNavigate()
 
     return (
         <Result
             status="404"
             title={title || '404 Not found'}
-            subTitle={"您访问的页面不存在."}
+            subTitle="您访问的页面不存在."
             extra={
-                <Button type="primary" onClick={() => history.push('/')}>
+                <Button type="primary" onClick={() => navigate('/')}>
                     返回首页
                 </Button>
             }
@@ -21,3 +20,4 @@ const NotFound: React.FC<{title?: string}> = ({title}) => {
 };
 
 export default NotFound;
+

@@ -1,10 +1,9 @@
 import {Button, Result} from 'antd';
-import {useService} from '@moln/react-ioc';
-import {History} from 'history';
-import React from 'react';
+import {useNavigate} from "react-router";
+import {FC} from "react";
 
-const Forbidden: React.FC = () => {
-    const history = useService<History>('history');
+const Forbidden: FC = () => {
+    const navigate = useNavigate()
 
     return (
         <Result
@@ -12,7 +11,7 @@ const Forbidden: React.FC = () => {
             title="403"
             subTitle="您无权访问该页面."
             extra={
-                <Button type="primary" onClick={() => history.push('/')}>
+                <Button type="primary" onClick={() => navigate('/')}>
                     返回首页
                 </Button>
             }

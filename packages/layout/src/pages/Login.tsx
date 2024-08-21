@@ -113,13 +113,19 @@ export const useClearClientState = (title: string) => {
 export interface LoginProps {
     onSubmit?: LoginFormProps['onSubmit']
     title?: string
-    desc?: ReactNode
+    header?: ReactNode
 }
 const Login: FC<LoginProps> = (
     {
         onSubmit = () => Promise.resolve(),
         title = "管理后台",
-        desc
+        header = (
+            <div className={styles.top}>
+                <div className={styles.header}>
+                    <span className={styles.title}>{title}</span>
+                </div>
+            </div>
+        )
     }
 ) => {
 
@@ -128,14 +134,8 @@ const Login: FC<LoginProps> = (
     return (
         <div className={styles.container}>
             <div className={styles.content}>
-                <div className={styles.top}>
-                    <div className={styles.header}>
-                        <div className={styles.logo} />
-                        <span className={styles.title}>{title}</span>
-                    </div>
-                    <div className={styles.desc}>{desc}</div>
-                </div>
-                <LoginForm onSubmit={onSubmit} />
+                {header}
+                <LoginForm onSubmit={onSubmit}/>
             </div>
         </div>
     );
