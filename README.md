@@ -1,10 +1,10 @@
 # 基础后台相关组件
 
-- [@zfegg/admin-application](packages/layout) : 基础后台布局及应用程序
+- [@zfegg/admin-layout](packages/layout) : 基础后台布局及应用程序
 - [@zfegg/admin-admin](packages/admin) : 管理员组件
-- [@zfegg/admin-authorization](packages/authorization) : 授权管理组件
 - [@zfegg/admin-data-source-components](packages/data-source-components) :
-  [`@moln/data-source`](https://github.com/Moln/data-source) + `antd` 结合
+- [@zfegg/admin-base-project](packages/base-project) : 多项目基础组件
+- [`@moln/data-source`](https://github.com/Moln/data-source) + `antd` 结合
   的数据操作组件
 
 TODO
