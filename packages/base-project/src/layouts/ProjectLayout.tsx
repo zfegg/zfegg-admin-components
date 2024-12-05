@@ -12,11 +12,10 @@ import {
 import {useRequest} from "ahooks";
 import ProjectService from "../services/ProjectService";
 import ProjectAvatar from "../components/ProjectAvatar";
-import {Outlet, useLocation, useParams} from "react-router";
+import {Outlet, useLocation, useParams, useMatches} from "react-router";
 import {MenuDataItem, PageLoading} from '@ant-design/pro-layout';
-import {useMatches} from "react-router-dom";
 import {Card} from "antd";
-import {Router} from "@remix-run/router";
+import type {DataRouter as Router} from "react-router";
 
 type Props = ComponentProps<typeof BasicLayout>;
 

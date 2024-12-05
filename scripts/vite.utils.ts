@@ -1,7 +1,7 @@
 import {mergeConfig, UserConfig, UserConfigFn} from "vite";
 import react from "@vitejs/plugin-react";
 import eslint from "vite-plugin-eslint";
-import path, {resolve} from "path";
+import path from "path";
 import {ModuleFormat, OutputOptions} from "rollup";
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
 // import babelImportPlugin from "./babelImportPlugin";

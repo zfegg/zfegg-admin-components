@@ -1,8 +1,8 @@
 import {FC, ReactNode, useMemo} from "react";
 import {RouteConfig} from "../interfaces";
 import {useService} from "@moln/react-ioc";
-import {useMatches} from 'react-router-dom';
-import {Router} from "@remix-run/router";
+import {useMatches} from 'react-router';
+import type {DataRouter as Router} from "react-router";
 import Authentication from "../services/Authentication";
 import {Forbidden} from "../pages";
 

@@ -6,7 +6,7 @@ import {IConfigProvider} from '../interfaces';
 import {useService} from '@moln/react-ioc';
 import {CONFIG_KEY} from '../constants';
 import {Space} from "antd";
-import {Router} from "@remix-run/router";
+import type {DataRouter as Router} from "react-router";
 import {filterMenus, getter, withoutRouteElementKey} from "../utils";
 import AvatarDropdown from "../components/AvatarDropdown";
 import Authentication from "../services/Authentication";

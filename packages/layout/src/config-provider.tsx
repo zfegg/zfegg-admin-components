@@ -7,7 +7,7 @@ import Security from './components/Security';
 import {Login, Welcome} from "./pages";
 import {toArrayRouteConfig} from "./utils/internal";
 import ErrorBoundary from "./components/ErrorBoundary";
-import {createHashRouter} from "react-router-dom";
+import {createHashRouter} from "react-router";
 
 
 const ConfigProvider: Record<any, any> = {

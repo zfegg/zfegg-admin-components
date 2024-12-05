@@ -1,10 +1,9 @@
 import type {ComponentProps, ComponentType} from 'react';
 import type {MenuDataItem, ProLayout} from '@ant-design/pro-layout';
-import {RouteObject} from "react-router";
+import type {DataRouter, RouteObject} from "react-router";
 import {MenuProps} from "antd";
 import {LoaderFunctionArgs} from "react-router-dom";
 import {DependencyContainerInterface} from "@moln/dependency-container";
-import type {Router} from "@remix-run/router";
 
 export type HeaderViewProps = Exclude<
     Required<ComponentProps<typeof ProLayout>['rightContentRender']>,
@@ -26,7 +25,7 @@ export interface IConfigProvider {
     })[];
     headerComponents?: (ComponentType<HeaderViewProps> & { index?: number })[];
     // routeWrappers?: Parameters<typeof renderRoutes>[0];
-    redirectLogin?: (router: Router) => void;
+    redirectLogin?: (router: DataRouter) => void;
     avatarDropdownProps?: AvatarDropdownProps
     layoutProps?: ComponentProps<typeof ProLayout>
 }

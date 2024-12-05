@@ -4,7 +4,7 @@ import {gotoLogin} from "../utils";
 import {App} from "antd";
 import {useService} from "@moln/react-ioc";
 import {AxiosInstance} from "axios";
-import {Router} from "@remix-run/router";
+import type {DataRouter as Router} from "react-router";
 
 const codeMessage = {
     200: '服务器成功返回请求的数据。',

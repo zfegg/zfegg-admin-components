@@ -1,5 +1,5 @@
 import mergeWith from 'lodash/mergeWith';
-import type {Router} from '@remix-run/router';
+import type {DataRouter as Router} from "react-router";
 import {RouteConfig} from "../interfaces"
 import {MenuDataItem} from "@ant-design/pro-layout";
 

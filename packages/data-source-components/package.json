@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-data-source-components",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -14,7 +14,7 @@
     "lodash": "*",
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^7"
   },
   "peerDependencies": {
     "@ant-design/pro-table": ">=3.9.1",

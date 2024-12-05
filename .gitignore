@@ -28,4 +28,5 @@ packages/*/types/
 
 .cache
 /**/dist
+/**/types
 /.phpunit.result.cache

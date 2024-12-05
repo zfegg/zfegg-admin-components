@@ -1,7 +1,6 @@
 import {RouteConfig, RouteConfigMap} from "../interfaces";
-import {RouteObject} from "react-router";
+import {RouteObject, LoaderFunction} from "react-router";
 import {DependencyContainerInterface} from "@moln/dependency-container";
-import {LoaderFunction} from "react-router-dom";
 
 type LazyFn = Required<RouteObject>['lazy']
 const lazyWrapper = (lazy: LazyFn, container: DependencyContainerInterface): LazyFn => {

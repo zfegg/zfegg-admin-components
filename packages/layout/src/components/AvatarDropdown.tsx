@@ -7,7 +7,7 @@ import styles from './AvatarDropdown.module.less';
 import {gotoLogin} from '../utils';
 import {CONFIG_KEY} from '../constants';
 import {AvatarDropdownProps, IConfigProvider} from "../interfaces";
-import {Router} from "@remix-run/router";
+import type {DataRouter as Router} from "react-router";
 
 
 const AvatarDropdown: FC<PropsWithChildren<AvatarDropdownProps>> & { index?: number } = ({menuItems, children}) => {
