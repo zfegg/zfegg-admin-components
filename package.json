@@ -4,7 +4,6 @@
   "author": "Moln <moln.xie@gmail.com>",
   "version": "0.1.0",
   "scripts": {
-    "start": "vite --port 4000",
     "dedup": "yarn-deduplicate --strategy fewer",
     "lint": "eslint ./src ./packages/admin/src packages/layout/src ./packages/data-source-components/src ./packages/base-project/src",
     "lint:fix": "eslint ./src ./packages/admin/src packages/layout/src ./packages/data-source-components/src ./packages/base-project/src --fix"
