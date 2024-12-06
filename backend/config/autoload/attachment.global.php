@@ -23,15 +23,4 @@ return [
     Filesystem::class => [
         'url' => 'public/uploads'
     ],
-    'routes' => [
-        [
-            'path' => '/api/attachment/images',
-            'middleware' => [
-                SessionMiddleware::class,
-                AuthenticationMiddleware::class,
-                AttachmentHandler::class,
-            ],
-            'allowed_methods' => ['POST'],
-        ]
-    ]
 ];
