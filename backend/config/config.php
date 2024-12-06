@@ -11,6 +11,12 @@ use Laminas\ConfigAggregator\PhpFileProvider;
 $cacheConfig = [
     'config_cache_path' => 'data/cache/config-cache.php',
 ];
+
+// Bug fix: https://github.com/laminas/laminas-di/pull/92
+$diConfig = (new \Laminas\Di\ConfigProvider())();
+$diConfig['dependencies']['abstract_factories'] = [Laminas\Di\Container\AutowireFactory::class];
+$diConfig = new ArrayProvider($diConfig);
+
 $providers = [
 
     \Mezzio\ConfigProvider::class,
@@ -25,7 +31,8 @@ $providers = [
 
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
     \Laminas\Diactoros\ConfigProvider::class,
-    \Laminas\Di\ConfigProvider::class,
+//    \Laminas\Di\ConfigProvider::class,
+    $diConfig,
 
     \Zfegg\Admin\Admin\ConfigProvider::class,
     \Zfegg\Admin\BaseProject\ConfigProvider::class,

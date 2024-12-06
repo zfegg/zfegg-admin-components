@@ -1,5 +1,6 @@
 *
 !cache
 !cache/.gitkeep
+!logs/.gitkeep
 !.gitignore
 !app.db

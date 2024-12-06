@@ -29,6 +29,7 @@ return [
             ContentValidationMiddleware::class => ContentValidationMiddlewareFactory::class,
         ],
         'abstract_factories' => [
+
         ],
 
         'auto' => [

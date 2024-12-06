@@ -28,7 +28,7 @@ return [
                 'event_manager' => 'default',
                 'params' => [
 //                    'url' => 'mysql://root:@localhost/yc_admin_v1?charset=utf8',
-                    'url' => 'sqlite:///' . __DIR__ . '/../../data/app.db',
+                    'url' => 'pdo-sqlite:///' . __DIR__ . '/../../data/app.db',
                 ],
                 'charset' => 'utf8',
             ],

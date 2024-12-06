@@ -23,7 +23,7 @@
         "laminas/laminas-config-aggregator": "^1.2",
         "laminas/laminas-di": "^3.14.0",
         "laminas/laminas-diactoros": "^3.3.1",
-        "laminas/laminas-servicemanager": "^3.22",
+        "laminas/laminas-servicemanager": "^4.0",
         "mezzio/mezzio": "^3.2.1",
         "mezzio/mezzio-authentication": "^1.2",
         "mezzio/mezzio-fastroute": "^3.0.3",
@@ -31,15 +31,11 @@
         "mezzio/mezzio-problem-details": "^1.2",
         "mezzio/mezzio-session-ext": "^1.10",
         "nikolaposa/monolog-factory": "^3.1",
-        "opis/json-schema": "^2.1",
-        "roave/psr-container-doctrine": "^4.0",
-        "symfony/property-access": "^6",
-        "symfony/serializer": "~6.2.0",
-        "zfegg/api-resource-doctrine": "^0.6.0",
+        "symfony/serializer": "^7.0",
+        "zfegg/api-doctrine-pack": "^0.1.0",
         "zfegg/attachment-handler": "^0.1.1",
         "zfegg/content-validation": "^5.4",
-        "zfegg/doctrine-helper": "^0.2.0",
-        "zfegg/psr11-symfony-cache": "^0.3.0"
+        "zfegg/psr11-symfony-cache": "^0.4.0"
     },
     "require-dev": {
         "filp/whoops": "^2.7.1",
