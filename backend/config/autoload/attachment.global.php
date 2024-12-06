@@ -3,7 +3,7 @@
 use League\Flysystem\Filesystem;
 use Mezzio\Authentication\AuthenticationMiddleware;
 use Mezzio\Session\SessionMiddleware;
-use Zfegg\AdminAttachment\AttachmentHandler;
+use Zfegg\AttachmentHandler\AttachmentHandler;
 
 return [
     AttachmentHandler::class => [
@@ -18,7 +18,7 @@ return [
             ],
         ],
         'storage' => 'images/{date}/{uniqid}.{ext}',
-        'url' => 'http://localhost:3000/uploads'
+        'url' => 'http://localhost:4000/uploads'
     ],
     Filesystem::class => [
         'url' => 'public/uploads'
