@@ -38,6 +38,10 @@ export type RouteConfig = RouteObject & Omit<MenuDataItem, 'children'> & {
 
 export interface RouteConfigItem extends Omit<RouteConfig, 'children'> {
     children?: RouteConfigMap
+
+    /**
+     * @deprecated Using Component instead
+     */
     component?: ComponentType<any>
 }
 
