@@ -4,11 +4,10 @@ import {Button, Space} from "antd";
 import {DeleteButton, FormDrawer, ProColumnType, ProTable,} from "@zfegg/admin-data-source-components";
 import {injectServices} from "@moln/react-ioc";
 import {DataSource, Resources} from "@moln/data-source";
-import {RouteConfigComponentProps} from "react-router-config";
 import {EditOutlined} from "@ant-design/icons";
 import {Book} from "../models/book";
 
-interface CardProps extends RouteConfigComponentProps {
+interface CardProps {
     dataSource: DataSource<Book>,
 }
 
@@ -17,7 +16,7 @@ const injection = injectServices((container) => {
 
     const dataSource = useMemo(() => {
         console.log('init mock data')
-        return container.get(Resources).create('book/books2').createDataSource({paginator: {type: "cursor"}})
+        return container.get(Resources).createDataSource('book/books2', {paginator: {type: "cursor"}})
     }, [])
 
     return {dataSource}
@@ -66,18 +65,12 @@ class CursorPaginationTable extends Component<CardProps> {
                 sorter: true,
             },
             {
-                dataIndex: 'group_id',
+                dataIndex: ['group', 'name'],
                 filterable: true,
-                defaultState: {
-                    show: false,
-                },
             },
             {
-                dataIndex: 'enabled',
+                dataIndex: 'status',
                 filterable: true,
-                defaultState: {
-                    show: false,
-                },
             },
             {
                 title: '操作',
@@ -90,8 +83,9 @@ class CursorPaginationTable extends Component<CardProps> {
                                 type={"primary"}
                                 icon={<EditOutlined />}
                             />
-                            <DeleteButton value={row.id}
+                            <DeleteButton
                                 dataSource={dataSource}
+                                item={row}
                                 size={'small'}
                                 onDeleted={() => {
                                     dataSource.fetch();
@@ -108,13 +102,22 @@ class CursorPaginationTable extends Component<CardProps> {
                 <Button key={"add"} type={"primary"} onClick={() => this.setState({visible: true, itemId: undefined})}>新增</Button>
             ]} >
                 <ProTable
-                    bindRoute
                     pagination={{
                         pageSizeOptions: ['3', '10', '20',]
                     }}
                     defaultSize={'small'}
                     columns={columns}
                     dataSource={dataSource}
+                    columnsState={{
+                        defaultValue: {
+                            status: {
+                                show: false,
+                            },
+                            'group,name': {
+                                show: false,
+                            }
+                        }
+                    }}
                 />
 
                 <FormDrawer visible={visible}

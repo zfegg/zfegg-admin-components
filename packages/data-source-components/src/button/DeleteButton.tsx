@@ -1,7 +1,7 @@
 import React, {ComponentProps, useState} from "react";
 import {Button, Popconfirm} from "antd";
 import {DeleteOutlined} from "@ant-design/icons";
-import {IDataSource} from "@moln/data-source";
+import type {IDataSource} from "@moln/data-source";
 
 type DeleteButtonProps<T extends Record<string, any>> = {
     title?: string,
@@ -35,7 +35,7 @@ function DeleteButton<T extends Record<string, any>>(
                 } else {
                     setLoading(true)
                     try {
-                        await dataSource.dataProvider.remove(item)
+                        await dataSource.dataProvider.remove(primary)
                     } finally {
                         setLoading(false)
                     }

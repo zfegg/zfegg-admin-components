@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useMemo, useState} from "react";
 import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
-import {Observer} from "mobx-react";
+import {Observer} from "mobx-react-lite";
 import {Button, DatePicker, Drawer, Form, Space, Tag} from "antd";
 import {PageContainer} from "@ant-design/pro-layout";
 import {UserAvatar} from "@zfegg/admin-layout";
@@ -12,6 +12,7 @@ import {EditOutlined} from "@ant-design/icons";
 import ProjectMemberSelect from "../components/ProjectMemberSelect";
 import AllUserSelect from "../components/AllUserSelect";
 import AllRoleSelect from "../components/AllRoleSelect";
+import {useDataSource} from "@zfegg/admin-data-source-components/src";
 
 interface MemberForm {
     members: number[],
@@ -133,8 +134,7 @@ const GroupList: FC = () => {
     const resources = useService(Resources)
     const dataSource = useMemo(
         () => resources
-            .create<Group>('projects/{project}/groups', {project})
-            .createDataSource({paginator: false}),
+            .createDataSource<Group>('projects/{project}/groups', {pathParams: {project}, paginator: false}),
         []
     )
 
@@ -217,9 +217,8 @@ const MemberList: FC = () => {
     const {project} = useParams() as ProjectParam
 
     const [visible, setVisible] = useState(false)
-    const resources = useService(Resources)
-    const membersApi = useMemo(() => resources.create<Member>('projects/{project}/members', {project}), [])
-    const dataSource = useMemo(() => membersApi.createDataSource({paginator: false}), [])
+    const dataSource = useDataSource<Member>('projects/{project}/members',  {pathParams: {project}, paginator: false})
+    const membersApi = dataSource.dataProvider
 
     useEffect(() => {
         dataSource.fetchInit()
@@ -265,8 +264,8 @@ const MemberList: FC = () => {
                 onClose={() => setVisible(false)}
                 onSubmit={async (value) => {
 
-                    for (let memberId of value.members) {
-                        for (let roleId of value.roles) {
+                    for (const memberId of value.members) {
+                        for (const roleId of value.roles) {
                             if (! dataSource.data.find((item) => item.member.id === memberId && item.role.id === roleId)) {
                                 await membersApi.create({member: memberId, role: roleId, expired: value.expired} as any)
                             }
@@ -279,7 +278,8 @@ const MemberList: FC = () => {
                     setVisible(false)
                 }} />
             <Observer>{() => (
-                <ProTable dataSource={dataSource}
+                <ProTable
+                    dataSource={dataSource}
                     size={"small"}
                     columns={columns}
                     toolBarRender={() => [

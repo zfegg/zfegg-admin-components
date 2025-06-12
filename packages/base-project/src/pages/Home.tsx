@@ -4,7 +4,7 @@ import {useService} from "@moln/react-ioc";
 import {Link} from "react-router-dom";
 import {PageContainer} from "@ant-design/pro-layout";
 import {BasicLayout} from "@zfegg/admin-layout";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import ProjectService from "../services/ProjectService";
 import {useRequest} from "ahooks";
 

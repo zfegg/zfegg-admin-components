@@ -1,6 +1,6 @@
 import React, {ComponentProps, FC} from "react";
 import {OperatorKeys} from "@moln/data-source";
-import {DatePicker, Input, Select} from "antd";
+import {DatePicker, Input, Select, Space} from "antd";
 import {normalizeOperators} from "./utils";
 import {FilterValue} from "./interfaces";
 import dayjs from "dayjs";
@@ -22,7 +22,7 @@ const DateFilter: FC<Props> = ({operators, value, onChange, valueFormat, ...prop
     const [operator, val] = Object.entries(value)[0]
 
     return (
-        <Input.Group compact>
+        <Space.Compact>
             <Select options={options}
                 value={operator}
                 onChange={(operator) => onChange?.({[operator]: val} as any)}
@@ -32,7 +32,7 @@ const DateFilter: FC<Props> = ({operators, value, onChange, valueFormat, ...prop
                 onChange={(inputValue) => onChange?.({[operator]: inputValue && inputValue.format(valueFormat)} as any)}
                 {...props as any[]}
             />
-        </Input.Group>
+        </Space.Compact>
     )
 }
 

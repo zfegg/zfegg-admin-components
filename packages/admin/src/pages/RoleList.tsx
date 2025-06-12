@@ -5,10 +5,10 @@ import {useService} from "@moln/react-ioc";
 import {IDataSource, IModelT, Resources} from "@moln/data-source";
 import {PageContainer} from "@ant-design/pro-layout";
 import ProCard from "@ant-design/pro-card";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {IConfigProvider, IRole, IUser} from "../interfaces";
 import {UserAvatar} from "@zfegg/admin-layout";
-import {filterSchemaByProperties, FormDrawer} from "@zfegg/admin-data-source-components";
+import {filterSchemaByProperties, FormDrawer, useDataSource} from "@zfegg/admin-data-source-components";
 import styles from './RoleList.module.less'
 import UserSelect from "../components/UserSelect";
 import {CONFIG_KEY} from "../constants";
@@ -18,7 +18,7 @@ type DataNode = Exclude<TreeProps['treeData'], undefined>[0]
 const RoleMembers: FC<{role: IModelT<IRole>, roles: IDataSource<IRole>}> = ({role, roles}) => {
     const [form] = Form.useForm();
     const resources = useService(Resources);
-    const users = useMemo(() => resources.create<IRole>('admin/users').createDataSource({paginator: false}), [])
+    const users = useMemo(() => resources.createDataSource<IRole>('admin/users', {paginator: false}), [])
     const roleUsers = useMemo(() => resources.create<IUser>(`admin/roles/${role.id}/users`), [role])
     const [submitting, setSubmitting] = useState(false)
 
@@ -28,7 +28,7 @@ const RoleMembers: FC<{role: IModelT<IRole>, roles: IDataSource<IRole>}> = ({rol
             await roleUsers.create({id})
         }
         setSubmitting(false)
-        roles.fetch()
+        await roles.fetch()
         form.resetFields()
     }
 
@@ -154,7 +154,8 @@ export default observer(() => {
     const resources = useService(Resources);
     // 禁用角色分配功能
     const assignRoleDisabled = useService<Record<string, IConfigProvider>>('config')[CONFIG_KEY].assignRoleDisabled
-    const roles = useMemo(() => resources.create<IRole>('admin/roles').createDataSource({paginator: false}), [])
+    useDataSource
+    const roles = useMemo(() => resources.createDataSource<IRole>('admin/roles', {paginator: false}), [])
     const [visible, setVisible] = useState(false);
     const [roleId, setRoleId] = useState<number>();
     const [selectedRole, setSelectedRole] = useState<number>();

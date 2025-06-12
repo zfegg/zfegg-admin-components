@@ -3,11 +3,11 @@ import {Space, Tag} from "antd";
 import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
 import {IRole} from "../interfaces";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 
 export const RoleTag2: FC<{roles: number[]}> = observer(({roles}) => {
     const resources = useService(Resources);
-    const roleDS = useMemo(() => resources.create<IRole>('admin/roles').createDataSource(), [])
+    const roleDS = useMemo(() => resources.createDataSource<IRole>('admin/roles'), [])
 
     useEffect(() => {
         roleDS.fetchInit();

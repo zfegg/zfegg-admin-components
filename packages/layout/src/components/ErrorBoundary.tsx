@@ -4,7 +4,7 @@ import {isRouteErrorResponse, useRouteError} from "react-router-dom";
 import {Forbidden, NotFound} from "../pages";
 
 const ErrorBoundary: FC = () => {
-    let error = useRouteError();
+    const error = useRouteError();
     console.error(error)
     if (isRouteErrorResponse(error)) {
 

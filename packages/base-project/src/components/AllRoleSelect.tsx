@@ -35,7 +35,7 @@ const RoleSelect: FC<Props> = (
 
     const {project} = useParams() as ProjectParam
     const resources = useService(Resources);
-    const roles = useMemo(() => resources.create<IRole>('projects/{project}/roles', {project}).createDataSource({paginator: false}), [])
+    const roles = useMemo(() => resources.createDataSource<IRole>('projects/{project}/roles', {pathParams: {project}, paginator: false}), [])
     const scalarValue = value && (
         valueObj
             ? (isArray(value) ? (value as IRole[]).map(val => val.id) : (value as IRole).id)

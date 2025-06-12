@@ -3,7 +3,7 @@ import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
 import {Select} from "antd";
 import {Group} from "../interfaces";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 
 const { Option } = Select;
 type SelectProps = ComponentProps<typeof Select>;
@@ -22,7 +22,7 @@ const GroupSelect: FC<Props> = observer((
 ) => {
 
     const resources = useService(Resources);
-    const groups = useMemo(() => resources.create<Group>('projects/{project}/groups', {project}).createDataSource({paginator: false}), [])
+    const groups = useMemo(() => resources.createDataSource<Group>('projects/{project}/groups', {pathParams: {project}, paginator: false}), [])
 
     useEffect(() => {
         const timeId = setTimeout(() => groups.fetchInit())

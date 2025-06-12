@@ -5,8 +5,10 @@ import {
     DeleteButton,
     FormDrawer,
     ProColumnType,
-    ProTable, useDataSource,
+    ProTable,
+    useDataSource,
     useDataSourceBindSearch,
+    useDrawerState,
 } from "@zfegg/admin-data-source-components";
 import {injectServices} from "@moln/react-ioc";
 import {DataSource, Resources} from "@moln/data-source";
@@ -18,24 +20,12 @@ interface CardProps {
     dataSource: DataSource<Book>,
 }
 
-const injection = injectServices((container) => {
-    console.log('inject mock data')
-
-    const dataSource = useMemo(() => {
-        console.log('init mock data')
-        return container.get(Resources).create('book/books').createDataSource({paginator: {pageSize: 3}})
-    }, [])
-
-    return {dataSource}
-})
-
 
 const TestProTable: FC = () => {
 
-    const [visible, setVisible] = useState(false)
-    const [itemId, setItemId] = useState<number>()
+    const {drawerProps, setItemId} = useDrawerState()
 
-    const dataSource = useDataSource<Book>('book/books', {}, {paginator: {pageSize: 3}})
+    const dataSource = useDataSource<Book>('book/books', {paginator: {pageSize: 3}})
 
     const columns: ProColumnType<Book>[] = [
         {
@@ -75,7 +65,6 @@ const TestProTable: FC = () => {
                     <Space>
                         <Button size={"small"}
                             onClick={() => {
-                                setVisible(true)
                                 setItemId(row.id)
                             }}
                             type={"primary"}
@@ -101,8 +90,7 @@ const TestProTable: FC = () => {
     return (
         <PageContainer extra={[
             <Button key={"add"} type={"primary"} onClick={() => {
-                setItemId(undefined)
-                setVisible(true)
+               setItemId(undefined)
             }}>新增</Button>
         ]} >
             <ProTable
@@ -112,13 +100,8 @@ const TestProTable: FC = () => {
                 dataSource={dataSource}
             />
 
-            <FormDrawer 
-                visible={visible}
-                itemId={itemId}
-                onClose={(...args) => {
-                    console.log(args)
-                    setVisible(false)
-                }}
+            <FormDrawer
+                {...drawerProps}
                 dataSource={dataSource}
             />
         </PageContainer>

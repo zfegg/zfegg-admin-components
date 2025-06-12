@@ -2,11 +2,10 @@
   "compilerOptions": {
     // match output dir to input dir. e.g. dist/index instead of dist/src/index
     "sourceRoot": "./src",
-    "declarationDir": "./types",
-//    "outDir": "./types",
+    "declarationDir": "dist",
     "noEmit": false,
     "emitDeclarationOnly": true
   },
-  "include": ["src/**/*"],
+  "include": ["src"],
   "extends": "../../tsconfig.base.json"
 }

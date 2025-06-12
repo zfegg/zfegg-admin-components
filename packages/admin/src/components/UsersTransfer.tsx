@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useMemo} from "react";
 import {IUser} from "../interfaces";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
 import {Transfer, TransferProps} from "antd";
@@ -22,7 +22,7 @@ const UsersTransfer: FC<Props> = observer((
     }
 ) => {
     const resources = useService(Resources);
-    const users = useMemo(() => resources.create<IUser>('admin/users').createDataSource(), [])
+    const users = useMemo(() => resources.createDataSource<IUser>('admin/users'), [])
 
     useEffect(() => {
         users.fetchInit()

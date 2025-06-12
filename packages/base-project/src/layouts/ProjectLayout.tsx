@@ -66,7 +66,7 @@ const ProjectLayout: FC<Props> = (props) => {
                     }
                     setMenuLoading(true);
                     try {
-                        let allowedMenus = await ps.projectMenus(projectId)
+                        const allowedMenus = await ps.projectMenus(projectId)
                         user.menus = allowedMenus
                         menus = filterMenus(menus, allowedMenus, [/*route.name*/])
                         setMenus(menus)

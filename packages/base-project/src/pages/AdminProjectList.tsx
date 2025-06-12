@@ -24,7 +24,7 @@ const AdminProjectList: FC = () => {
     const [visible, setVisible] = useState(false)
     const [itemId, setItemId] = useState<number>()
     const resources = useService(Resources);
-    const dataSource = useMemo(() => resources.create('projects').createDataSource(), [resources]);
+    const dataSource = useMemo(() => resources.createDataSource('projects'), [resources]);
 
     const columns: ProColumnType[] = [
         {

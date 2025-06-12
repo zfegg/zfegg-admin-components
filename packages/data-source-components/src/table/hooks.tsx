@@ -27,7 +27,7 @@ function querySetOrDel(query: URLSearchParams, key: string, data: any) {
 }
 
 function normalizeNumber(value: string | null) {
-    let result = jsonParse(value!)
+    const result = jsonParse(value!)
     if (typeof result === 'number') {
         return result
     }
@@ -60,7 +60,7 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
     dataSource: IDataSource<T>,
     navigateOptions?: NavigateOptions,
 ) {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const [query] = useSearchParams();
     const setURLSearchParams = (query: URLSearchParams) => {
         console.log(query)
@@ -94,7 +94,7 @@ export function useDataSourceBindSearch<T extends Record<string, any>>(
         dataSource.setFilters(fromFilterValuesToDSFilters(dataSource, result))
     });
     trySet('sort', (value) => {
-        let result = jsonParse(value!)
+        const result = jsonParse(value!)
         if (! isArray(value)) {
             return null;
         }

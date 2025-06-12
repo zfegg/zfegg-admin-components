@@ -1,6 +1,6 @@
 import {defineConfig, mergeConfig, UserConfig} from "vite";
 import {baseConfig} from "../../scripts/vite.utils";
-import path, {resolve} from "path";
+import {resolve} from "path";
 
 export default defineConfig(() => {
     const config = mergeConfig(baseConfig, {
@@ -10,7 +10,7 @@ export default defineConfig(() => {
         server: {
             proxy: {
                 '^/(api|zfegg|uploads)/.*': {
-                    target: 'http://localhost/zfegg/zfegg-admin-components/backend/public',
+                    target: 'http://localhost/zfegg/zfegg-admin-components/backend/public/index.php',
                     changeOrigin: true,
                 },
             }
@@ -22,7 +22,7 @@ export default defineConfig(() => {
                     replacement: '@zfegg',
                     customResolver: (name: string, ...args: any) => {
                         const packageDirName = name.replace("@zfegg/admin-", "")
-                        return path.resolve(__dirname, `../${packageDirName}/src/index.ts`)
+                        return resolve(__dirname, `../${packageDirName}/src/index.ts`)
                     },
                 },
             ],

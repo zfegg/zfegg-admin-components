@@ -3,7 +3,7 @@ import {Card, Empty, Menu} from "antd";
 import {ProjectOutlined} from "@ant-design/icons";
 import {useService} from "@moln/react-ioc";
 import ProjectAvatar from "../components/ProjectAvatar";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import ProjectService from "../services/ProjectService";
 import {Link} from "react-router-dom";
 import {useRequest} from "ahooks";

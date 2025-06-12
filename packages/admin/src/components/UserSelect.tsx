@@ -13,7 +13,7 @@ const {Option} = Select;
 const UserSelect: FC<ComponentProps<typeof Select> & {dataFilter?: (data: IUser) => boolean}> = ({dataFilter, ...props}) => {
 
     const resources = useService(Resources);
-    const users = useMemo(() => resources.create<IUser>('admin/users').createDataSource(), [])
+    const users = useMemo(() => resources.createDataSource<IUser>('admin/users'), [])
 
     useEffect(() => {
         users.fetchInit()

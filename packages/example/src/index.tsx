@@ -1,11 +1,12 @@
 import container from './container';
 import {App} from '@zfegg/admin-layout';
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import {ConfigProvider} from "antd";
 import {DependencyContainerProvider} from "@moln/react-ioc";
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root")!); // createRoot(container!) if you use TypeScript
+root.render(
     <React.StrictMode>
         <DependencyContainerProvider container={container}>
             <ConfigProvider
@@ -21,6 +22,5 @@ ReactDOM.render(
                 <App />
             </ConfigProvider>
         </DependencyContainerProvider>
-    </React.StrictMode>,
-    document.getElementById("root")
+    </React.StrictMode>
 );

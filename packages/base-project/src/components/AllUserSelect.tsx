@@ -16,7 +16,7 @@ const AllUserSelect: FC<ComponentProps<typeof Select> & {dataFilter?: (data: IUs
     const {project} = useParams() as ProjectParam
     const resources = useService(Resources);
     const users = useMemo(() => {
-        const ds = resources.create<IUser>('projects/{project}/users', {project}).createDataSource();
+        const ds = resources.createDataSource<IUser>('projects/{project}/users', {pathParams: {project}});
         ds.addFilter({field:"status", value: 1})
         return ds;
     }, [])

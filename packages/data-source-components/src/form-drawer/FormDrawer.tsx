@@ -3,7 +3,7 @@ import {JSONSchema7} from "json-schema";
 import React, {ComponentProps, PropsWithChildren, useCallback, useEffect, useMemo, useState} from "react";
 import {App, Button, Drawer, Form, FormInstance, Space} from "antd";
 import {Editor, filterEditable} from "../utils";
-import {Observer} from "mobx-react";
+import {Observer} from "mobx-react-lite";
 import isEqual from "lodash/isEqual";
 import {schemaToFormItems} from "../form";
 import {UiPropsSets} from "../form/internal/interfaces";

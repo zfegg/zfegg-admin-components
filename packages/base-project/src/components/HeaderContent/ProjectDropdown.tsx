@@ -3,7 +3,7 @@ import React, {FC} from "react";
 import {Button, Dropdown} from "antd";
 import {DownOutlined, ProjectOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import ProjectAvatar from "../../components/ProjectAvatar";
 import ProjectService from "../../services/ProjectService";
 import {useRequest} from "ahooks";

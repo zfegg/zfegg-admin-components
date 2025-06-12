@@ -1,17 +1,19 @@
 import {Button, Card, Form, Input, Select, Table, TableColumnsType} from "antd";
-import React, {ComponentProps, FC, useMemo, useState} from "react";
+import React, {ComponentProps, FC, useEffect, useMemo, useState} from "react";
 import {EditOutlined, PlusOutlined} from "@ant-design/icons";
 import {useService} from "@moln/react-ioc";
 import {IDataSource, Resources} from "@moln/data-source";
+import {ProColumnType as AntdProColumnType} from "@ant-design/pro-components";
 import {
     filterSchemaByProperties,
     FormDrawer,
     ProColumnType,
     ProTable,
-    valueEnumToOptions
+    valueEnumToOptions,
+    useDataSource,
 } from "@zfegg/admin-data-source-components";
 import {PageContainer} from "@ant-design/pro-layout";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import RoleTag from "../components/RoleTag";
 import {Binding, IConfigProvider, IUser} from "../interfaces";
 import RoleSelect from "../components/RoleSelect";
@@ -30,9 +32,13 @@ const EnableButton: FC<{ users: IDataSource<IUser>, row: IUser }> = observer(({u
             u.status = row.status === Status.disabled ? Status.enabled : Status.disabled
             setLoading(true)
             try {
+                console.log('sync')
                 await users.sync()
+                console.log('sync')
             } catch (e) {
+                console.log(e)
                 users.cancelChanges()
+                throw e
             } finally {
                 setLoading(false)
             }
@@ -149,9 +155,8 @@ const UserForm: FC<ComponentProps<typeof FormDrawer> & {fields: string[]}> = (pr
 
 export default () => {
 
-    const resources = useService(Resources);
     const assignRoleDisabled = useService<Record<string, IConfigProvider>>('config')[CONFIG_KEY].assignRoleDisabled
-    const users = useMemo(() => resources.create<IUser>('admin/users').createDataSource(), [])
+    const users = useDataSource<IUser>('admin/users')
     const [visible, setVisible] = useState(false);
     const [itemId, setItemId] = useState<number>();
     const columns: ProColumnType<IUser>[] = [

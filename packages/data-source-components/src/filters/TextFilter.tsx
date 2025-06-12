@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Input, Select} from "antd";
+import {Flex, Input, Select, Space} from "antd";
 import {normalizeOperators} from "./utils";
 import {FilterValue, OperatorsAttr} from "./interfaces";
 

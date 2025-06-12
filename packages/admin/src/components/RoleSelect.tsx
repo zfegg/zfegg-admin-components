@@ -32,7 +32,7 @@ const RoleSelect: FC<Props> = (
 ) => {
 
     const resources = useService(Resources);
-    const roles = useMemo(() => resources.create<IRole>('admin/roles').createDataSource({paginator: false}), [])
+    const roles = useMemo(() => resources.createDataSource<IRole>('admin/roles', {paginator: false}), [])
     const scalarValue = value && (
         valueObj
             ? (isArray(value) ? (value as IRole[]).map(val => val.id) : (value as IRole).id)

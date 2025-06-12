@@ -1,7 +1,7 @@
 import {ColumnType, ProColumnType} from "../interfaces";
 import React, {ReactNode, useEffect, useState} from "react";
 import {Button, Card, Col, Form, Row, TableProps} from "antd";
-import {DataSourceFilterItem, IDataSource, OperatorKeys, SortOptions2} from "@moln/data-source";
+import {IDataSource, OperatorKeys} from "@moln/data-source";
 import {ProFieldValueType} from "@ant-design/pro-utils";
 import {JSONSchema7TypeName} from "json-schema";
 import dayjs from "dayjs";
@@ -16,13 +16,15 @@ import isArray from "lodash/isArray";
 import isEmpty from "lodash/isEmpty";
 import {getColumnSchema} from "../../utils";
 import {valueEnumToOptions} from "../utils";
-import {Observer} from "mobx-react";
+import {Observer} from "mobx-react-lite";
 import {CursorPagination} from "../../pagination";
 import {ProTableProps} from "@ant-design/pro-table";
+import {SortOptions2, DataSourceFilterItem} from "@moln/data-source/dist/interfaces";
 
 type TableFilters = Record<string, [OperatorKeys, any][] | null>
 type FilterKey = any[]
 type DataRow = Record<string, any>
+// type DataSourceFilterItem<T extends Record<string, any>> = Extract<Exclude<IDataSource<T>['filter'], null>['filters'][0], {value: any}>
 
 const jsonSchemaTypes = {
     string: 'text',
@@ -99,28 +101,23 @@ const filterDropdown = (field: string, filter: ReactNode): ColumnType<any>['filt
         return (
             <Form form={form} onFinish={handleSubmit} layout={'inline'} onValuesChange={(values) => { setClearDisabled(! values[field])}}>
                 <Card
-                    size="small"
-                    title={(
-                        <Form.Item
-                            name={field}
-                            rules={[{validator: filterValidator}]}
-                        >
-                            {filter}
-                        </Form.Item>
-                    )}
+                    styles={{body: {minWidth: 130}}}
+                    size={"small"}
+                    actions={[
+                        <Button key={'a'} type="link" disabled={clearDisabled} onClick={handleClearFilter} size="small" >
+                            清空
+                        </Button>,
+                        <Button key={'b'} type="primary" htmlType={'submit'} size="small">
+                            确认
+                        </Button>
+                    ]}
                 >
-                    <Row justify="space-between">
-                        <Col>
-                            <Button type="link" disabled={clearDisabled} onClick={handleClearFilter} size="small" >
-                                清空
-                            </Button>
-                        </Col>
-                        <Col>
-                            <Button type="primary" htmlType={'submit'} size="small">
-                                确认
-                            </Button>
-                        </Col>
-                    </Row>
+                    <Form.Item
+                        name={field}
+                        rules={[{validator: filterValidator}]}
+                    >
+                        {filter}
+                    </Form.Item>
                 </Card>
             </Form>
         )

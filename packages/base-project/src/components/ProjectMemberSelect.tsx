@@ -6,7 +6,7 @@ import {Member, ProjectParam} from "../interfaces";
 import {useParams} from "react-router-dom";
 import {uniqBy} from "lodash";
 import {UserAvatar} from "@zfegg/admin-layout";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 
 const { Option } = Select;
 type SelectProps = ComponentProps<typeof Select>;
@@ -20,8 +20,7 @@ const ProjectMemberSelect: FC<Props> = observer(({project, ...props}) => {
     const {project: paramProject} = useParams() as ProjectParam
     const resources = useService(Resources);
     const dataSource = useMemo(() => resources
-        .create<Member>('projects/{project}/members', {project: project || paramProject})
-        .createDataSource({paginator: false}), [])
+        .createDataSource<Member>('projects/{project}/members', {pathParams: {project: project || paramProject}, paginator: false}), [])
 
     useEffect(() => {
         dataSource.fetchInit()

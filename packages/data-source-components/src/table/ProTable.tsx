@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import {IDataSource} from "@moln/data-source";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import AntdProTable, {ProTableProps} from "@ant-design/pro-table";
 import {ProColumnType} from "./interfaces";
 import {fromDataSourceFilterToFilterValues, fromFilterValuesToDSFilters, initTable} from "./internal/utils";

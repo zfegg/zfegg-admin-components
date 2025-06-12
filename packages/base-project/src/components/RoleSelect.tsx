@@ -4,7 +4,7 @@ import {IRole} from "@zfegg/admin-admin";
 import {Resources} from "@moln/data-source";
 import {Select} from "antd";
 import {Member} from "../interfaces";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 
 const {Option} = Select;
 type SelectProps = ComponentProps<typeof Select>;
@@ -23,7 +23,7 @@ const RoleSelect: FC<Props> = observer((
 ) => {
 
     const resources = useService(Resources);
-    const members = useMemo(() => resources.create<Member>('projects/{project}/members', {project}).createDataSource({paginator: false}), [])
+    const members = useMemo(() => resources.createDataSource<Member>('projects/{project}/members', {pathParams: {project}, paginator: false}), [])
     const roles = useMemo(() => {
         const rolesMap: Record<number, IRole> = {};
 

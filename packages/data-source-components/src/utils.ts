@@ -1,8 +1,8 @@
 import {JSONSchema7} from "json-schema";
 import isArray from "lodash/isArray";
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 import {useService} from "@moln/react-ioc";
-import {OptionsArg, Resources, IDataSource} from "@moln/data-source";
+import {Resources} from "@moln/data-source";
 
 export enum Editor {
     Create,
@@ -110,7 +110,27 @@ export function toTreeData<
     return data;
 }
 
-export function useDataSource<T extends Record<string, any>>(path: string, params?: Record<string, string | number>, options?: OptionsArg<T>): IDataSource<T> {
+export const useDataSource: Resources['createDataSource'] = (path, options = {}) => {
     const resources = useService(Resources)
-    return useMemo(() => resources.create<T>(path, params).createDataSource(options), [path, JSON.stringify(params)])
+    const {pathParams} = options as any
+    return useMemo(() => resources.createDataSource(path as any, options), [path, JSON.stringify(pathParams)])
+}
+
+export function useDrawerState<T = number | string>() {
+    const [visible, setVisible] = useState(false)
+    const [itemId, setItemId] = useState<T>()
+
+    return {
+        drawerProps:  {
+            visible,
+            itemId,
+            onClose: () => {
+                setVisible(false)
+            }
+        },
+        setItemId: (value: T | undefined) => {
+            setVisible(true)
+            setItemId(value)
+        },
+    }
 }

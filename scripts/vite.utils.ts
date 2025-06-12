@@ -9,6 +9,7 @@ import {getBabelOutputPlugin} from '@rollup/plugin-babel';
 import svgr from "vite-plugin-svgr";
 import {theme} from "antd";
 import {convertLegacyToken} from "@ant-design/compatible";
+import dts from 'vite-plugin-dts'
 
 const {defaultAlgorithm, defaultSeed} = theme;
 
@@ -86,6 +87,7 @@ export const libBaseConfig = ((env) => {
             charset: 'utf8',
         },
         plugins: [
+            dts(),
             // viteBabelImport,
             // typescript({
             //     exclude: [
@@ -132,6 +134,20 @@ export const libBaseConfig = ((env) => {
                     ]),
                 ],
             },
+        },
+        test: {
+            // 👋 add the line below to add jsdom to vite
+            environment: 'jsdom',
+            globals: true,
+            setupFiles: './test/setup.ts',
+
+            // browser: {
+            //     instances: [
+            //         {
+            //             browser: 'chromium',
+            //         },
+            //     ],
+            // },
         },
     } as UserConfig);
 }) as UserConfigFn;

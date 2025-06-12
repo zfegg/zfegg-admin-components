@@ -1,5 +1,5 @@
 import {TableColumnType as AntdColumnType} from "antd";
-import {ColumnsState, ProColumnType as AntdProColumnType} from "@ant-design/pro-table";
+import {ProColumnType as AntdProColumnType} from "@ant-design/pro-table";
 import {OperatorKeys} from "@moln/data-source";
 import {FilterElement} from "../filters/interfaces";
 
@@ -37,12 +37,7 @@ export interface ColumnType<T> extends Omit<AntdColumnType<T>,  'filters' | 'fil
 /**
  * 废弃 'filters' | 'filterMultiple'， 交由 filterable 处理, {filterable: { filter: <SelectFilter />}}
  */
-export interface ProColumnType<T = any, ValueType = 'text'> extends Omit<AntdProColumnType<T, ValueType>, 'filters' | 'filterMultiple'> {
+export type ProColumnType<T = any, ValueType = 'text'> = Omit<AntdProColumnType<T, ValueType>, 'filters' | 'filterMultiple'> & {
     filterable?: true | Filterable,
     children?: ProColumnType<T>[],
-
-    /**
-     * @deprecated Move to `ProTableProps['columnsState']['defaultValue']` instead
-     */
-    defaultState?: ColumnsState,
 }

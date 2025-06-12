@@ -1,7 +1,7 @@
 import React from "react";
 import {Table as AntdTable, TableProps} from "antd";
 import {IDataSource} from "@moln/data-source";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {ColumnType} from "./interfaces";
 import {initTable} from "./internal/utils";
 

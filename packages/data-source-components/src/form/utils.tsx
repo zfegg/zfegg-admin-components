@@ -47,7 +47,7 @@ export function schemaToFormItem(parentSchema: JSONSchema7, key: string, uiProps
         return uiProps.render({name, label: schema.title || key, rules: schemaToFormRules(schema, required)}, schema, )
     }
 
-    let type = validType(schema)
+    const type = validType(schema)
 
     switch (type) {
     case "array":
@@ -149,7 +149,7 @@ export function schemaToFormItems(schema: JSONSchema7, uiPropsSets: UiPropsSets 
             {Object.entries((schema.properties || {}) as {[key: string]: JSONSchema7}).map(([key, item]) => {
                 const uiProps = uiPropsSets[key] || {};
 
-                let type = validType(item)
+                const type = validType(item)
 
                 return (
                     <Col span={uiProps.span || (type === 'object' ? 24 : 12)} key={key}>

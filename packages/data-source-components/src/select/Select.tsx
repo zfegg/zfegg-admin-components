@@ -1,7 +1,7 @@
 import {Select as AntdSelect} from "antd";
 import {useEffect} from "react";
 import {SelectProps} from "./interfaces";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 
 function Select<T extends Record<string, any> = Record<any, any>>({dataSource, optionsMap, ...props}: SelectProps<T>) {
 

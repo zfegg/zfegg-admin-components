@@ -1,5 +1,5 @@
 import React, {ComponentProps, FC} from "react";
-import {Checkbox, Space} from "antd";
+import {Checkbox, Flex, Space} from "antd";
 import {FilterValue} from "./interfaces";
 
 interface Props extends Omit<ComponentProps<typeof Checkbox.Group<any>>, 'value' | 'onChange'> {
@@ -19,12 +19,12 @@ const CheckboxFilter: FC<Props> = ({options, value, onChange, ...props}) => {
             value={val as string[]}
             {...props}
         >
-            <Space direction="vertical">
+            <Flex vertical>
                 {options?.map(item => typeof item === "object"
                     ? <Checkbox key={item.value.toString()} value={item.value}>{item.label}</Checkbox>
                     : <Checkbox key={item} value={item}>{item}</Checkbox>
                 )}
-            </Space>
+            </Flex>
         </Checkbox.Group>
     )
 }

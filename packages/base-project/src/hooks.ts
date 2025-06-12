@@ -6,5 +6,5 @@ import {Member} from "./interfaces";
 
 export const useMembers = (project: number) => {
     const resources = useService(Resources)
-    return useMemo(() => resources.create<Member>('projects/{project}/members', {project}).createDataSource({paginator: false}), []);
+    return useMemo(() => resources.createDataSource<Member>('projects/{project}/members', {pathParams: {project}, paginator: false}), []);
 }

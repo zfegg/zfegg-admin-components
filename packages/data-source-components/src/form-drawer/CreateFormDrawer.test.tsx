@@ -1,7 +1,9 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
-import {ArrayProvider, BaseRootSchema, Schema} from "@moln/data-source";
+import {render, screen, waitFor} from '@testing-library/react';
+import {ArrayProvider, BaseRootSchema, Resources, Schema} from "@moln/data-source";
 import FormDrawer from "./FormDrawer";
+
+import {describe, expect, it} from 'vitest'
 
 export const rule = {
     "type": "object",
@@ -99,48 +101,51 @@ export const rule = {
     ]
 }
 
-test('it create form', async () => {
-    const data = [{
-        "id": 1,
-        "type": "TJ",
-        "code": "SDFA",
-        "name": "2021年1月媒体",
-        "rule": "GGTTTTMM#####*****",
-        "mutex": "",
-        "ptt": 1,
-        "ptn": 0,
-        "passlen": 0,
-        "usepass": 0,
-        "limitsec": 0,
-        "game_notify": 1,
-        "state": 1,
-        "modify": "2021-03-09T17:47:04+08:00",
-        "whichrule": 0,
-        "subject": "至臻礼包2",
-        "mail": "打开后获得：800银币、大绷带*5、胜场卡*1、戈弗雷(3天体验)",
-        "common": false,
-        "awards": {
-            "id": 219,
-            "name": "至臻礼包2",
-            "memo": null,
-            "awards": [{"id": "212", "num": "8"}, {"id": "51", "num": "5"}, {"id": "34", "num": "1"}, {
-                "id": "1304",
-                "num": "3"
-            }],
-            "remark": null,
-            "tags": null,
-            "status": null,
-            "updated_at": null
-        },
-        "channels": null,
-        "allow_zones": null,
-        "allow_tags": null
-    }];
+describe("Test CreateFormDrawer", () => {
+    it('create form', async () => {
+        const data = [{
+            "id": 1,
+            "type": "TJ",
+            "code": "SDFA",
+            "name": "2021年1月媒体",
+            "rule": "GGTTTTMM#####*****",
+            "mutex": "",
+            "ptt": 1,
+            "ptn": 0,
+            "passlen": 0,
+            "usepass": 0,
+            "limitsec": 0,
+            "game_notify": 1,
+            "state": 1,
+            "modify": "2021-03-09T17:47:04+08:00",
+            "whichrule": 0,
+            "subject": "至臻礼包2",
+            "mail": "打开后获得：800银币、大绷带*5、胜场卡*1、戈弗雷(3天体验)",
+            "common": false,
+            "awards": {
+                "id": 219,
+                "name": "至臻礼包2",
+                "memo": null,
+                "awards": [{"id": "212", "num": "8"}, {"id": "51", "num": "5"}, {"id": "34", "num": "1"}, {
+                    "id": "1304",
+                    "num": "3"
+                }],
+                "remark": null,
+                "tags": null,
+                "status": null,
+                "updated_at": null
+            },
+            "channels": null,
+            "allow_zones": null,
+            "allow_tags": null
+        }];
 
-    const ds = (new ArrayProvider(data, new Schema(rule as BaseRootSchema))).createDataSource();
-    await ds.fetch()
+        const ds = new Resources().createDataSource(data, {schema: new Schema(rule as BaseRootSchema)})
+        await ds.fetch()
 
-    render(<FormDrawer dataSource={ds} visible={true} onClose={() => void 0}/>);
-    const linkElement = screen.getByText(/卡规则/i);
-    expect(linkElement).toBeInTheDocument();
-});
+        render(<FormDrawer dataSource={ds} visible={true} onClose={() => void 0}/>);
+        const linkElement = waitFor(() => screen.getByText(/卡规则/i));
+        expect(linkElement).toBeInstanceOf(HTMLElement);
+    });
+
+})

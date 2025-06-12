@@ -1,3 +1,7 @@
+import DependencyContainer, {
+    Lifecycle,
+    ReflectionBasedAbstractFactory
+} from "@moln/dependency-container";
 import {DependencyContainerInterface} from "@moln/dependency-container";
 import Axios from "axios";
 import {Resources} from "@moln/data-source";
@@ -6,10 +10,10 @@ import qs from 'qs';
 import addFormats from "ajv-formats"
 import {AjvSchemaList} from '@moln/data-source'
 
-export default function serviceProvider(container: DependencyContainerInterface) {
+function baseServiceProvider(container: DependencyContainerInterface) {
     container.register('request', () => {
         return Axios.create({
-            baseURL: '/api/',
+            baseURL: '/api',
             timeout: 5000,
             headers: {'x-requested-with': 'XMLHttpRequest'},
             paramsSerializer: {
@@ -34,3 +38,15 @@ export default function serviceProvider(container: DependencyContainerInterface)
     container.register(Resources, container => new Resources(container.get('request'), new AjvSchemaList(container.get(Ajv))))
 
 }
+
+const container = new DependencyContainer();
+
+container.configure({
+    abstractFactories: [
+        [new ReflectionBasedAbstractFactory(), Lifecycle.SINGLETON],
+    ],
+});
+
+baseServiceProvider(container);
+
+export default container;

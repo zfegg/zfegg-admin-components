@@ -7,6 +7,15 @@
 - [`@moln/data-source`](https://github.com/Moln/data-source) + `antd` 结合
   的数据操作组件
 
+开发
+---
+
+安装
+
+```shell
+npm i --workspaces=false
+```
+
 TODO
 ----
 

@@ -4,6 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import 'reflect-metadata';
 import '@testing-library/jest-dom';
+import {vi} from 'vitest'
 
 
 Object.defineProperty(window, 'matchMedia', {
@@ -12,10 +13,10 @@ Object.defineProperty(window, 'matchMedia', {
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(), // deprecated
-        removeListener: jest.fn(), // deprecated
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(), // deprecated
+        removeListener: vi.fn(), // deprecated
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
     })
 });

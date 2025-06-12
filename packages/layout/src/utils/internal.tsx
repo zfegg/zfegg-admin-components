@@ -2,12 +2,12 @@ import {RouteConfig, RouteConfigMap} from "../interfaces";
 import {RouteObject, LoaderFunction} from "react-router";
 import {DependencyContainerInterface} from "@moln/dependency-container";
 
-type LazyFn = Required<RouteObject>['lazy']
+type LazyFn = Extract<RouteObject['lazy'], () => void>
 const lazyWrapper = (lazy: LazyFn, container: DependencyContainerInterface): LazyFn => {
     return (async () => {
         const result = await lazy()
         let loader: LoaderFunction | undefined
-        let tmpLoader = result.loader
+        const tmpLoader = result.loader
         if (typeof tmpLoader == "function") {
             loader = (props) => {
                 props.context = container
