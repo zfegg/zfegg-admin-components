@@ -65,7 +65,7 @@ export const FormDrawer = <T extends Record<string, any> = Record<string, any>>(
         visible,
         onClose,
         dataSource,
-        schema,
+        schema = dataSource.schema.schema,
         uiProps,
         itemId,
         drawerProps,
@@ -81,7 +81,9 @@ export const FormDrawer = <T extends Record<string, any> = Record<string, any>>(
     const {notification} = App.useApp()
     const [wrapForm] = Form.useForm(form);
     const onCloseProp = (success?: boolean, row?: IModel<T>): void => {
-        success || dataSource.cancelChanges()
+        if (success) {
+            dataSource.cancelChanges()
+        }
         onClose?.(success, row)
     }
     if (successNotification === undefined) {
@@ -90,16 +92,17 @@ export const FormDrawer = <T extends Record<string, any> = Record<string, any>>(
         }
     }
 
-    schema = filterEditable(schema || dataSource.schema.schema, itemId ?  Editor.Edit :  Editor.Create);
-
     const [submitting, setSubmitting] = useState(false)
 
-    const schema2 = useMemo(() => filterEditable(schema || dataSource.schema.schema, itemId ? Editor.Edit : Editor.Create), [itemId, schema]);
-    const item = useMemo(() => dataSource.get(itemId!), [itemId]);
-
-    const initialValues = useMemo(() => {
-        return normalize(schemaDefaultValues(schema2) as T);
-    }, [dataSource.schema.schema, schema2])
+    const {schema2, item, initialValues} = useMemo(() => {
+        const schema2 = filterEditable(schema, itemId ? Editor.Edit : Editor.Create);
+        const initialValues = formProps?.initialValues || normalize(schemaDefaultValues(schema2) as T)
+        return {
+            schema2,
+            item: dataSource.get(itemId!),
+            initialValues,
+        }
+    }, [itemId, schema]);
 
     const handleSubmit = useFormSubmit({
         dataSource,
@@ -111,7 +114,9 @@ export const FormDrawer = <T extends Record<string, any> = Record<string, any>>(
         try {
             setSubmitting(true)
             await handleSubmit(values)
-            successNotification && successNotification()
+            if (successNotification) {
+                successNotification()
+            }
             onCloseProp(true)
         } catch (e) {
             dataSource.cancelChanges()
