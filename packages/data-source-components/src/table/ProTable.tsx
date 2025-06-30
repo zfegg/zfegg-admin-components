@@ -58,7 +58,6 @@ function ProTable<T extends Record<string, any>, ValueType = 'text'>({
     dataSource,
     columns = schemaToColumns(dataSource.schema.schema) as any[],
     autoFetch = true,
-    defaultSize,
     pagination,
     ...props
 }: Props<T, ValueType>) {

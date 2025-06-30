@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useEffect, useState} from 'react';
+import {FC, ReactNode, useEffect, useState} from 'react';
 import {PageLoading} from '@ant-design/pro-layout';
 import {useService} from '@moln/react-ioc';
 import Authentication from '../services/Authentication';
@@ -30,7 +30,7 @@ const Security: FC<SecurityProps> = ({children}) => {
         return <PageLoading />;
     }
 
-    return children as React.ReactElement;
+    return children;
 };
 
 export default Security;

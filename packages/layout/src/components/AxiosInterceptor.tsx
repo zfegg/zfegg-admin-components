@@ -31,7 +31,7 @@ const AxiosInterceptor: FC = () => {
     const {notification, modal: {error}} = App.useApp()
 
     useEffect(() => {
-        http.interceptors.response.use(
+        const interceptor = http.interceptors.response.use(
             (response) => response,
             (e) => {
                 const {response, config} = e;
@@ -90,6 +90,9 @@ const AxiosInterceptor: FC = () => {
                 return Promise.reject(e);
             }
         );
+        return () => {
+            http.interceptors.response.eject(interceptor)
+        }
     }, [http])
 
     return null;

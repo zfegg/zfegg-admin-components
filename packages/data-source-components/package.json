@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-data-source-components",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@moln/data-source": "^0.5.5",
+    "@moln/react-ioc": "^0.1.3",
+    "ajv": "^8.11.0",
     "lodash": "*",
     "mobx": "^6.3.2",
     "mobx-react-lite": "^4.1.0",

@@ -87,7 +87,9 @@ const BasicLayout: FC<Props> = (
             //     return last ? <span>{breadcrumbName}</span> : <Link to={path!}>{breadcrumbName}</Link>;
             // }}
             avatarProps={{
-                render: () => <AvatarDropdown/>,
+                src: user?.avatar,
+                title: user.real_name,
+                render: (props, dom) => <AvatarDropdown>{dom}</AvatarDropdown>,
             }}
             menuDataRender={(menus) => {
                 if (user.admin) {

@@ -2,7 +2,7 @@ import {Button, Col, Row, Select, Space} from "antd";
 import {ComponentProps} from "react";
 
 interface Props {
-    position?: 'right' | 'left' | 'center'
+    position?: 'end' | 'start' | 'center'
     disabledPrev?: boolean
     disabledNext?: boolean
     showSizeChanger?: boolean
@@ -29,7 +29,7 @@ export default ((
     }: Props
 ) => {
     return (
-        <Row justify={"center"}>
+        <Row justify={position}>
             <Col style={{padding: 10}}>
                 <Space size={size} >
                     <Button disabled={disabledPrev} size={size} onClick={onClickPrev}>&lt; 上一页</Button>

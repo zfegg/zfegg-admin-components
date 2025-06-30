@@ -8,16 +8,14 @@ import "./App.css";
 import {PageLoading} from "@ant-design/pro-layout";
 import AxiosInterceptor from "./components/AxiosInterceptor";
 
-type Props = {};
 
-const App: FC<Props> = () => {
+const App: FC = () => {
     const router = useService<DataRouter>('router')
-    const loading = <PageLoading />
 
     return (
         <AntdApp>
             <AxiosInterceptor />
-            <Suspense fallback={loading}>
+            <Suspense fallback={<PageLoading />}>
                 <RouterProvider router={router} />
             </Suspense>
         </AntdApp>
