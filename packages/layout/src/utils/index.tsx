@@ -31,7 +31,7 @@ export function configMerge(objValue: any, srcValue: any): any | undefined {
     }
 
     // 替换 React 组件
-    if (typeof srcValue === "object" && srcValue.$$typeof) {
+    if (typeof srcValue === "object" && srcValue !== null && srcValue.$$typeof) {
         return srcValue
     }
 }

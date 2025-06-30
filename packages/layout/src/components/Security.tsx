@@ -4,7 +4,7 @@ import {useService} from '@moln/react-ioc';
 import Authentication from '../services/Authentication';
 
 interface SecurityProps {
-    children: ReactNode;
+    children: Exclude<ReactNode, null | undefined>;
 }
 
 const Security: FC<SecurityProps> = ({children}) => {

@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-layout",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -33,6 +33,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
     }
   },
   "engines": {
