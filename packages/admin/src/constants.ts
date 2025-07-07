@@ -95,7 +95,7 @@ addUserSchema.required!.push("email", "password")
 const simpleUserSchema = filterSchemaByProperties(userSchema as object, ['id', 'real_name', 'email'])
 delete simpleUserSchema.required
 
-export const roleSchema = {
+export const roleSchema: BaseRootSchema = {
     "type": "object",
     "primaryKey": "id",
     "properties": {

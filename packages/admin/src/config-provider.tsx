@@ -10,13 +10,13 @@ import {
     Welcome
 } from "@zfegg/admin-layout";
 import HeadRightAdmin from "./components/HeadRightAdmin";
-import Ajv from "ajv";
 import {CONFIG_KEY as ADMIN_CONFIG_KEY, roleSchema, userSchema} from './constants';
 import {Link} from "react-router-dom";
 import {SettingOutlined} from "@ant-design/icons";
 import ProfileService from "./services/ProfileService";
 import Login from "./pages/Login";
 import {IConfigProvider} from "./interfaces";
+import {Resources} from "@moln/data-source";
 
 const ConfigProvider = {
     dependencies: {
@@ -24,11 +24,11 @@ const ConfigProvider = {
             [ProfileService, container => new ProfileService(container.get('request'))]
         ]),
         activationMiddlewares: new Map([
-            [Ajv, [
+            [Resources, [
                 (_, _1, next) => {
-                    const instance: Ajv = next();
-                    instance.addSchema(userSchema, 'admin/users')
-                    instance.addSchema(roleSchema, 'admin/roles')
+                    const instance: Resources = next();
+                    instance.schemas.add('admin/users', userSchema);
+                    instance.schemas.add('admin/roles', roleSchema);
 
                     return instance;
                 }
