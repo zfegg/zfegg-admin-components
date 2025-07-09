@@ -44,7 +44,7 @@ const ImageUpload: FC<Props> = (
                 console.log(file, fileList);
                 setFileList(fileList)
                 if (file.status === "done") {
-                    const files = fileList.map(item => (item.url || item.response?.file))
+                    const files = fileList.map(item => (item.url || item.response?.file?.url))
 
                     onChange?.(files)
                 }

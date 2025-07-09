@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Button, Card, Form, Input, notification} from 'antd';
+import {Alert, App, Button, Card, Form, Input} from 'antd';
 import {PageContainer} from '@ant-design/pro-layout';
 import {UserProfile} from "../../interfaces";
 import {useService} from "@moln/react-ioc";
 import ProfileService from "../../services/ProfileService";
-import {AvatarUpload} from "@zfegg/admin-layout";
+import AvatarUpload from "../../components/AvatarUpload";
 
 
 const layout = {
@@ -18,6 +18,7 @@ const layout = {
 
 function Settings() {
 
+    const {notification} = App.useApp()
     const [loading, setLoading] = useState(false)
     const profileService = useService(ProfileService)
     const [user, setUser] = useState<UserProfile>();

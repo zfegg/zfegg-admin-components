@@ -1,7 +1,8 @@
-import ImageUpload, {ImageUploadProps} from "./ImageUpload";
+import {ImageUpload} from "@zfegg/admin-data-source-components";
 import {FC} from "react";
+import type {ComponentProps} from "react";
 
-interface Props extends Omit<ImageUploadProps, 'value' | 'onChange'> {
+interface Props extends Omit<ComponentProps<typeof ImageUpload>, 'value' | 'onChange'> {
     value?: string,
     onChange?: (files: string) => void,
 }
