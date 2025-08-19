@@ -4,7 +4,6 @@ import axios, {AxiosInstance} from "axios";
 import {CONFIG_KEY, IConfigProvider, RouteConfigMap, Security, Welcome} from "@zfegg/admin-layout";
 import ProjectService from "./services/ProjectService";
 import {groupSchema, memberSchema, projectSchema} from "./constants";
-import Ajv from "ajv";
 import ProjectDropdown from "./components/HeaderContent";
 import ProjectLayout from "./layouts/ProjectLayout";
 import {AdminProjectList, General, Members} from "./pages";
@@ -22,12 +21,12 @@ const ConfigProvider = {
             [ProjectService, container => new ProjectService(container.get('request'))],
         ]),
         activationMiddlewares: new Map([
-            [Ajv, [
+            [Resources, [
                 (container, token, next) => {
-                    const instance: Ajv = next();
-                    instance.addSchema(memberSchema, 'projects/{project}/members')
-                    instance.addSchema(groupSchema, 'projects/{project}/groups')
-                    instance.addSchema(projectSchema, 'projects')
+                    const instance: Resources = next();
+                    instance.schemas.add('projects/{project}/members', memberSchema)
+                    instance.schemas.add('projects/{project}/groups', groupSchema)
+                    instance.schemas.add('projects', projectSchema)
 
                     return instance;
                 }

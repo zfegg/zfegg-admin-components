@@ -4,8 +4,7 @@ import {PageContainer} from '@ant-design/pro-layout';
 import {UserProfile} from "../../interfaces";
 import {useService} from "@moln/react-ioc";
 import ProfileService from "../../services/ProfileService";
-import AvatarUpload from "../../components/AvatarUpload";
-
+import {AvatarUpload} from "@zfegg/admin-data-source-components";
 
 const layout = {
     labelCol: {span: 8},

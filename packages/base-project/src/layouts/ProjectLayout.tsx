@@ -33,7 +33,7 @@ const ProjectLayout: FC<Props> = (props) => {
     const [menuLoading, setMenuLoading] = useState(true)
     const [menus, setMenus] = useState<MenuDataItem[]>([])
     const layoutRoute = useMemo(() => {
-        const route = getter(router.routes, matches[1].id.split("-").map(Number))!
+        const route = getter(router.routes, matches[0].id.split("-").map(Number))!
         return withoutRouteElementKey(route)
     }, [matches])
     const forbidden = useMemo(() => {

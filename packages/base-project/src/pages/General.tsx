@@ -3,12 +3,12 @@ import {PageContainer} from "@ant-design/pro-layout";
 import {useService} from "@moln/react-ioc";
 import {Resources} from "@moln/data-source";
 import ProCard from "@ant-design/pro-card";
-import {Button, Col, Form, Input, notification, Popconfirm, Row} from "antd";
+import {Button, Col, Form, Input, notification, Popconfirm, Row, Space} from "antd";
 import {Project} from "../interfaces";
 import {useRequest} from "ahooks";
 import {AxiosInstance} from "axios";
 import {useOutletContext} from "react-router";
-import {AvatarUpload} from "@zfegg/admin-layout";
+import {AvatarUpload} from "@zfegg/admin-data-source-components";
 
 const SettingSecret: FC<{project: Project, onFinish: () => Promise<void>}> = ({project, onFinish}) => {
 
@@ -21,12 +21,12 @@ const SettingSecret: FC<{project: Project, onFinish: () => Promise<void>}> = ({p
     return (
         <ProCard title={'服务器密钥(Secret)'}>
             <Form>
-                <Input.Group compact>
+                <Space.Compact>
                     <Input readOnly value={project.secret} style={{maxWidth: 300}} />
                     <Popconfirm title={'确认重置'} onConfirm={run}>
                         <Button loading={loading}>重置</Button>
                     </Popconfirm>
-                </Input.Group>
+                </Space.Compact>
             </Form>
         </ProCard>
     )

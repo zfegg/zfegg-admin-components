@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-base-project",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -14,7 +14,6 @@
     "ahooks": "^3.1.2"
   },
   "peerDependencies": {
-    "ajv": "^8.6.0",
     "antd": "^5.0.0",
     "react": ">=17"
   },
@@ -30,6 +29,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
     }
   },
   "engines": {

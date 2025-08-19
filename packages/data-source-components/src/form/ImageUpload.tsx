@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Upload, UploadProps} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 
@@ -22,15 +22,18 @@ interface Props {
 const ImageUpload: FC<Props> = (
     {value, onChange, maxLength = 8}
 ) => {
-
-    const files = ((value?.map(url => ({
-        name: url.split('/').pop(),
-        status: 'done',
-        url: attachmentUrl(url),
-        uid: url,
-    })) || []) as FileList)
     // .concat(fileList)
-    const [fileList, setFileList] = useState<FileList>(files)
+    const [fileList, setFileList] = useState<FileList>([])
+
+    useEffect(() => {
+        const files = ((value?.map(url => ({
+            name: url.split('/').pop(),
+            status: 'done',
+            url: attachmentUrl(url),
+            uid: url,
+        })) || []) as FileList)
+        setFileList(files)
+    }, [value])
 
     return (
         <Upload<Record<string, any>>
@@ -40,12 +43,13 @@ const ImageUpload: FC<Props> = (
             onPreview={(f) => {
                 console.log(f);
             }}
+            onRemove={(...args) => {
+                console.log(args)
+            }}
             onChange={({file, fileList}) => {
-                console.log(file, fileList);
                 setFileList(fileList)
-                if (file.status === "done") {
+                if (file.status === "done" || file.status === "removed") {
                     const files = fileList.map(item => (item.url || item.response?.file?.url))
-
                     onChange?.(files)
                 }
             }}

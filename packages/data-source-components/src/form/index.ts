@@ -1,6 +1,6 @@
 import {DatePicker, RangePicker, TimePicker} from "./DatePicker";
 import ImageUpload, {attachmentUrl, setBaseAttachmentUrl} from './ImageUpload'
-
+import AvatarUpload from './AvatarUpload'
 export * from './utils'
 
 export {
@@ -9,5 +9,6 @@ export {
     RangePicker,
     ImageUpload,
     setBaseAttachmentUrl,
-    attachmentUrl
+    attachmentUrl,
+    AvatarUpload,
 }
