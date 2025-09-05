@@ -1,6 +1,6 @@
 import {LockTwoTone, LoginOutlined, UserOutlined,} from '@ant-design/icons';
 import {Alert, Button, Form, Input} from 'antd';
-import React, {FC, ReactNode, useEffect, useState} from 'react';
+import React, {FC, PropsWithChildren, ReactNode, useEffect, useState} from 'react';
 import styles from './login.module.less';
 import {useService} from "@moln/react-ioc";
 import {useLocation, useNavigate} from "react-router";
@@ -19,31 +19,13 @@ const LoginMessage: FC<{content: string;}> = ({content}) => (
         />
     </Form.Item>
 );
+const size = 'large'
 
-export const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
-    const location = useLocation()
-    const navigate = useNavigate()
-    const [errorMsg, setErrorMsg] = useState<string>();
-    const [loading, setLoading] = useState(false)
-
-    const handleSubmit = async (data: {email: string, password: string}) => {
-        const query = new URLSearchParams(location.search);
-        try {
-            setLoading(true)
-            await onSubmit(data)
-            navigate(query.get('redirect') || '/')
-        } catch (e: any) {
-            const msg = e.response?.data?.message || `系统错误!!`;
-            setErrorMsg(`错误(${e.response?.status || '0'}): ${msg}`);
-        } finally {
-            setLoading(false)
-        }
-    };
-    const size = 'large'
-    return (
-        <div className={styles.main}>
-            <Form onFinish={handleSubmit}>
-                {errorMsg && <LoginMessage content={errorMsg} />}
+export const LoginForm: FC<PropsWithChildren<LoginFormProps>> = (
+    {
+        onSubmit,
+        children = (
+            <>
                 <Form.Item
                     name="email"
                     rules={[
@@ -78,6 +60,32 @@ export const LoginForm: FC<LoginFormProps> = ({onSubmit}) => {
                         allowClear
                     />
                 </Form.Item>
+            </>
+        )
+    }) => {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [errorMsg, setErrorMsg] = useState<string>();
+    const [loading, setLoading] = useState(false)
+
+    const handleSubmit = async (data: {email: string, password: string}) => {
+        const query = new URLSearchParams(location.search);
+        try {
+            setLoading(true)
+            await onSubmit(data)
+            navigate(query.get('redirect') || '/')
+        } catch (e: any) {
+            const msg = e.response?.data?.message || `系统错误!!`;
+            setErrorMsg(`错误(${e.response?.status || '0'}): ${msg}`);
+        } finally {
+            setLoading(false)
+        }
+    };
+    return (
+        <div className={styles.main}>
+            <Form onFinish={handleSubmit}>
+                {errorMsg && <LoginMessage content={errorMsg} />}
+                {children}
                 <Form.Item>
                     <Button
                         loading={loading}
@@ -115,7 +123,7 @@ export interface LoginProps {
     title?: string
     header?: ReactNode
 }
-const Login: FC<LoginProps> = (
+const Login: FC<PropsWithChildren<LoginProps>> = (
     {
         onSubmit = () => Promise.resolve(),
         title = "管理后台",
@@ -125,7 +133,8 @@ const Login: FC<LoginProps> = (
                     <span className={styles.title}>{title}</span>
                 </div>
             </div>
-        )
+        ),
+        children,
     }
 ) => {
 
@@ -135,7 +144,7 @@ const Login: FC<LoginProps> = (
         <div className={styles.container}>
             <div className={styles.content}>
                 {header}
-                <LoginForm onSubmit={onSubmit}/>
+                <LoginForm onSubmit={onSubmit}>{children}</LoginForm>
             </div>
         </div>
     );

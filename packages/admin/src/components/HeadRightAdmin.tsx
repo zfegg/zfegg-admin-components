@@ -16,7 +16,7 @@ const HeadRightAdmin: FC & {index?: number} = () => {
     }
 
     const classes = ['zfe-layout-header-action'];
-    if (route.key?.toString().indexOf('admin') === 0) {
+    if (route.pathname.toString().indexOf('/admin') === 0) {
         classes.push('focus')
     }
     return (

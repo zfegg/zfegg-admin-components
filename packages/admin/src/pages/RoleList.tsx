@@ -151,11 +151,11 @@ const RolePermissions: FC<{role: IModelT<IRole>, roles: IDataSource<IRole>}> = o
 
 export default observer(() => {
 
-    const resources = useService(Resources);
+    // const resources = useService(Resources);
     // 禁用角色分配功能
     const assignRoleDisabled = useService<Record<string, IConfigProvider>>('config')[CONFIG_KEY].assignRoleDisabled
-    useDataSource
-    const roles = useMemo(() => resources.createDataSource<IRole>('admin/roles', {paginator: false}), [])
+    const roles = useDataSource<IRole>('admin/roles', {paginator: false})
+    // const roles = useMemo(() => resources.createDataSource<IRole>('admin/roles', {paginator: false}), [])
     const [visible, setVisible] = useState(false);
     const [roleId, setRoleId] = useState<number>();
     const [selectedRole, setSelectedRole] = useState<number>();

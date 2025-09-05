@@ -20,13 +20,17 @@ const UserSelect: FC<ComponentProps<typeof Select> & {dataFilter?: (data: IUser)
     }, [])
 
     const debounceFetcher = React.useMemo(() => debounce((value: string) => {
-        users.setFilters({
-            filters: [
-                {field: 'real_name', operator: 'contains', value},
-                {field: 'email', operator: 'contains', value},
-            ],
-            logic: 'or'
-        })
+        if (value) {
+            users.setFilters({
+                filters: [
+                    {field: 'real_name', operator: 'contains', value},
+                    {field: 'email', operator: 'contains', value},
+                ],
+                logic: 'or'
+            })
+        } else {
+            users.setFilters(null);
+        }
         users.fetch()
     }, 800), []);
 

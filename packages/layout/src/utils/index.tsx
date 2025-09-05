@@ -36,15 +36,6 @@ export function configMerge(objValue: any, srcValue: any): any | undefined {
     }
 }
 
-let baseAttachmentUrl: string = "";
-export function setBaseAttachmentUrl(url: string) {
-    baseAttachmentUrl = url
-}
-
-export function attachmentUrl(src: string) {
-    return /^https?:\/\//.test(src) ? src : (baseAttachmentUrl + src)
-}
-
 
 export const getter = (data: RouteConfig[], keys: number[]): RouteConfig | undefined => {
     const key = keys.shift()

@@ -12,7 +12,6 @@ import AvatarDropdown from "../components/AvatarDropdown";
 import Authentication from "../services/Authentication";
 
 type Props = {
-    headerRightComponents?: IConfigProvider['headerRightComponents'];
     headerComponents?: IConfigProvider['headerComponents'];
 } & ProLayoutProps;
 
@@ -20,7 +19,6 @@ type Props = {
 const BasicLayout: FC<Props> = (
     {
         children,
-        headerRightComponents,
         headerComponents,
         ...props
     }
@@ -39,11 +37,10 @@ const BasicLayout: FC<Props> = (
         return withoutRouteElementKey(route)
     }, [matches])
 
-    headerRightComponents = headerRightComponents || appConfig.headerRightComponents || [];
     headerComponents = headerComponents || appConfig.headerComponents || [];
     const layoutProps = appConfig.layoutProps || {}
 
-    const actions = headerRightComponents
+    const actions = (appConfig.headerRightComponents || [])
         .sort((a, b) => (a.index || 0) - (b.index || 0))
         .map((component, idx) => createElement(component, {key: 'key-' + idx, ...props}))
 

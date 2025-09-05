@@ -1,6 +1,6 @@
 {
   "name": "@zfegg/admin-admin",
-  "version": "0.4.4",
+  "version": "0.4.6",
   "license": "MIT",
   "author": "Moln <moln.xie@gmail.com>",
   "scripts": {
@@ -12,7 +12,7 @@
   "dependencies": {
     "@moln/data-source": "^0.5.5",
     "@moln/react-ioc": "^0.1.2",
-    "@zfegg/admin-layout": "^0.2.0",
+    "@zfegg/admin-layout": "^0.2.0 || ^0.3.0",
     "@zfegg/admin-data-source-components": "^0.4.2",
     "ahooks": "^3.1.2",
     "lodash": "*",

@@ -8,12 +8,15 @@ export const memberSchema: BaseRootSchema = {
             readOnly: true,
         },
         member: {
+            title: "成员",
             type: ["object", "integer"],
         },
         role: {
+            title: "角色",
             type: ["object", "integer"],
         },
         expired: {
+            title: "过期时间",
             type: ["string", "null"],
             format: 'date-time',
         }
