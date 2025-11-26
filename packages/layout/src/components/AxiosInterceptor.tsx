@@ -49,7 +49,7 @@ const AxiosInterceptor: FC = () => {
                     });
                     break;
                 case 422:
-                    const errors = response.data?.validation_messages as Record<string, Record<string, string>>;
+                    const errors = (response.data?.errors || response.data?.validation_messages || {}) as Record<string, Record<string, string>>;
 
                     error({
                         title: '参数验证错误!',
