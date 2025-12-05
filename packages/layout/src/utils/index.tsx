@@ -75,7 +75,7 @@ export const filterMenus = (menus: MenuDataItem[], allowMenus: string[], parent:
                 menu.hideInMenu = true
             }
         }
-        if (menu.children) {
+        if (menu.children?.length) {
             menu.children = filterMenus(menu.children, allowMenus, keys)
 
             if (menu.children.filter(r => r.hideInMenu).length === menu.children.length) {

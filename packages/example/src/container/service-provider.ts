@@ -4,7 +4,7 @@ import {Resources} from "@moln/data-source";
 import Ajv from "ajv";
 import qs from 'qs';
 import addFormats from "ajv-formats"
-import {AjvSchemaList} from '@moln/data-source'
+import {AjvSchemaList} from '@moln/data-source/schema/AjvSchema'
 
 export default function serviceProvider(container: DependencyContainerInterface) {
     container.register('request', () => {
@@ -19,7 +19,7 @@ export default function serviceProvider(container: DependencyContainerInterface)
             }
         });
     });
-    container.register(Ajv, _ => {
+    container.register(Ajv, () => {
         const ajv = new Ajv({
             strict: false,
             useDefaults: true,

@@ -8,8 +8,6 @@ import debounce from "lodash/debounce";
 import {IUser} from "../interfaces";
 
 
-const {Option} = Select;
-
 const UserSelect: FC<ComponentProps<typeof Select> & {dataFilter?: (data: IUser) => boolean}> = ({dataFilter, ...props}) => {
 
     const resources = useService(Resources);
@@ -36,14 +34,16 @@ const UserSelect: FC<ComponentProps<typeof Select> & {dataFilter?: (data: IUser)
 
     return (
         <Observer>{() => {
-            const options = (dataFilter ? users.data.filter(dataFilter) : users.data).map((item) => (
-                <Option key={item.id} value={item.id}>
+            const options = (dataFilter ? users.data.filter(dataFilter) : users.data).map((item) => ({
+                value: item.id,
+                key: item.id,
+                label: (
                     <Space>
                         <Avatar size={'small'} icon={item.avatar ? null : <UserOutlined />} src={item.avatar} />
                         {item.real_name}
                     </Space>
-                </Option>
-            ));
+                )
+            }));
 
             return (
                 <Select
@@ -52,10 +52,10 @@ const UserSelect: FC<ComponentProps<typeof Select> & {dataFilter?: (data: IUser)
                     placeholder="选择用户"
                     filterOption={false}
                     onSearch={debounceFetcher}
-                    notFoundContent={users.loading ? <Spin size="small" /> : null}
+                    notFoundContent={users.loading ? <Spin size="small" /> : undefined}
+                    options={users.loading ? [] : options}
                     {...props}
                 >
-                    {options}
                 </Select>
             )
         }}</Observer>
